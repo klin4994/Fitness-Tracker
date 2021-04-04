@@ -21,11 +21,8 @@ const resistanceSchema = new Schema({
     },
     sets: {
       type: Number
-    },
-    distance: {
-      type: Number
     }
-}, { _id : false })
+})
 const workoutSchema = new Schema({
   day: {
     type: Date,
@@ -34,7 +31,7 @@ const workoutSchema = new Schema({
   exercises: [resistanceSchema]
 });
 
-const Workout = mongoose.model("Workout", workoutSchema);
+const Resistance = mongoose.model("Resistance", workoutSchema);
 
-module.exports = Workout;
+module.exports = Resistance;
 
