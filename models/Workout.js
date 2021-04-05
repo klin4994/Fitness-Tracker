@@ -31,6 +31,7 @@ const workoutSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  totalDuration: {type: Number},
   exercises: [resistanceSchema]
 });
 

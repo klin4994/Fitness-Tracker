@@ -40,21 +40,19 @@ app.get("/api/workouts", (req, res) => {
     });
 });
 // continue last exercise
-app.get(`/exercise?:id`, (req, res) => {
-  console.log(req.query.id)
-  dbs.findOne({_id: req.query.id})
-    .then(dbWorkout => {
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
+app.put("/api/workouts/:id", (req, res) => {
+  console.log("put req", req.body)
+  dbs.updateOne({_id:req.params.id}, { $push: { exercises: req.body} }, { new: true })
+  .then(response => {
+    res.json(response)
+  }).catch(err => {
+    res.json(err);
+  });
+})
 // create new workouts
-app.put("/api/workouts/:id", ({body}, res) => {
-  console.log(body)
+app.post("/api/workouts", ({body}, res) => {
+  console.log("post req", body)
   dbs.create(body)
-  .then(({ _id }) => dbs.updateOne({_id:_id}, { $push: { exercises: body} }, { new: true }))
   .then(response => {
     res.json(response)
   }).catch(err => {
