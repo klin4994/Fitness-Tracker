@@ -39,11 +39,16 @@ app.get("/api/workouts", (req, res) => {
       res.json(err);
     });
 });
-// continue last exercise
+// add exercise
 app.put("/api/workouts/:id", (req, res) => {
-  console.log("put req", req.body)
+  
   dbs.updateOne({_id:req.params.id}, { $push: { exercises: req.body} }, { new: true })
   .then(response => {
+    res.json(response)
+  }).catch(err => {
+    res.json(err);
+  });
+  dbs.aggregate ([{$group:{totalDuration:{$sum:"$duration"}, count: { $sum: 1 }}}]).then(response => {
     res.json(response)
   }).catch(err => {
     res.json(err);
