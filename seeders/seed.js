@@ -58,6 +58,7 @@ let workoutSeed = [
     ]
   },
   {
+    
     day: new Date().setDate(new Date().getDate()-6),
     exercises: [
       {

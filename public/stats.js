@@ -42,6 +42,10 @@ function populateChart(data) {
   document.querySelector('#lastSevenDSum').innerHTML=lastSevenDurationSum;
   let durations = durationSumArray;
   let pounds = calculateTotalWeight(data);
+  console.log(pounds)
+  const lastSevenWeightsSum = pounds.slice(pounds.length-7).reduce((a,b) => a + b, 0)
+  console.log(lastSevenWeightsSum)
+  document.querySelector('#lastSevenSSum').innerHTML=lastSevenWeightsSum;
   let workouts = workoutNames(data);
   const colors = generatePalette();
 
@@ -205,7 +209,7 @@ function calculateTotalWeight(data) {
 
     totals.push(workoutTotal);
   });
-
+  
   return totals;
 }
 
