@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", {
 });
 
 // routes
-app.use(require("./router/api.js"));
+app.use(express.Router());
 
 // get all workouts
 app.get("/api/workouts/range", (req, res) => {
