@@ -15,7 +15,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", {
   useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: false
-
 });
 
 // routes
@@ -68,16 +67,6 @@ app.post("/api/workouts", ({body}, res) => {
   });
 })
 
-// app.post("/submit", ({ body }, res) => {
-//   db.Note.create(body)
-//     .then(({ _id }) => db.User.findOneAndUpdate({}, { $push: { notes: _id } }, { new: true }))
-//     .then(dbWorkout => {
-//       res.json(dbWorkout);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
 
 
 app.listen(PORT, () => {

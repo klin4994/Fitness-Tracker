@@ -17,7 +17,7 @@ body {
 }
 
 nav {
-  background-color: #5793fd;
+  background-color: #e44141;
   color: #ffffff;
   height: 80px;
   padding: 10px;
@@ -429,6 +429,14 @@ form > button {
   padding: 10px;
 }
 
+#logo img{
+  max-height:50px;
+}
+
+#logo h1 {
+  display: inline;
+  padding-top:1em
+}
 @keyframes toast {
   50% {
     opacity: 1;
