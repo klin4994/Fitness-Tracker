@@ -6,15 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css" />
   <title>Fitness Tracker</title>
 </head>
 
 <body>
-  <nav>
-    <a href="/">Fitness Tracker</a>
-    <a href="/stats.html">Dashboard</a>
-  </nav>
+  <nav class="navbar navbar-expand-lg navbar-light ">
+    <a href="/" id="navbar-brand"><img src="./images/run.png"> <h1 class="navbar-center">FiTracker</h1></a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a class="nav-item" href="/">Latest workout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item" href="/stats.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item" href="/exercise.html">Continue Workout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item" href="/exercise.html">New Workout</a>
+          </li>
+      </ul>
+  </div>
+</nav>
   <div class="wrapper">
     <header>
       <h1>Fitness Tracker</h1>

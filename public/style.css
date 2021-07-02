@@ -10,7 +10,6 @@ html,
 body,
 .wrapper {
   height: 100%;
-  background-color:grey
 }
 
 body {
@@ -18,12 +17,12 @@ body {
 }
 
 nav {
-  background-color: #e44141;
+  background-color: #e43535;
   color: #ffffff;
-  height: 80px;
   padding: 10px;
   line-height: 3;
   font-size: 1.2rem;
+  background-image: linear-gradient(to right, #e43535, rgb(253, 117, 27));
 }
 
 a,
@@ -34,20 +33,18 @@ a:visited {
   color: inherit;
 }
 
-nav a:hover{
-  opacity: 0.7;
+.navbar-nav :hover {
+  background-color: #e43535
 }
 
 header {
   height: 150px;
-  padding-top: 80px;
+  padding-top: 4em;
   text-align: center;
   font-size: 1.5rem;
 }
 
-header h1 {
-  transform: skewX(-2deg);
-}
+
 
 select {
   display: block;
@@ -372,9 +369,9 @@ form > button {
   margin-bottom: 5px;
 }
 
-/* .workout .card {
+.workout .card {
   width: 350px;
-} */
+}
 
 .prev-workout button {
   margin: 10px;
@@ -427,24 +424,38 @@ form > button {
 .cardio-form,
 .resistance-form {
   padding: 10px;
-}
+} 
 
 #navbar-brand{
+    margin-right:3em
 }
+
 #navbar-brand img{
-  max-height:5em;
-  height: auto;
-  width: auto;
-  padding:0.5em
+    max-height:3em;
+    height: auto;
+    width: auto;
+    padding:0em;
+  }
+  
+#navbar-brand h1 {
+display:inline;
+padding-top:100px;
+font-size: 2rem
 }
 
-#navbar-brand h1 {
-  display:inline;
-
+.navbar {
+    padding: 0 1em;
 }
 
 .nav-item{
-  margin: auto 2em;
+    margin: 0 0.5em;
+    padding-bottom: 6px;
+  }
+
+
+
+.orange{
+    padding:0
 }
 
 
@@ -459,3 +470,17 @@ form > button {
     right: -320px;
   }
 }
+
+@media only screen and (max-width: 345px) {
+  .navbar-toggler {
+   display: inline;
+  }
+}
+
+@media only screen and (max-width: 989px) {
+    .navbar-nav{
+        margin: 0 auto;
+        width:150%
+    }
+}
+

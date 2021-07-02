@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "mdbootstrap": "^4.19.2",
     "mongoose": "^5.12.3",
     "morgan": "^1.9.1"
   }
