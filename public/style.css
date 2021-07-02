@@ -99,7 +99,6 @@ input {
 
 .wrapper {
   background-color: #f2f8ff;
-  padding-bottom: 100px;
 }
 
 .card.m-auto,
@@ -448,16 +447,22 @@ font-size: 2rem
 }
 
 .nav-item{
-    margin: 0 0.5em;
-    padding-bottom: 6px;
-  }
-
-
-
-.orange{
-    padding:0
+  margin: 0 0.5em;
+  padding-bottom: 6px;
 }
 
+div.wrapper.workout {
+  background-color:rgb(255, 255, 255);
+  height:max-content
+}
+
+.orange{
+  padding:0
+}
+
+.rest-workout-container{
+  border: 1px solid 
+}
 
 
 @keyframes toast {

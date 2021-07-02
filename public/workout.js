@@ -6,11 +6,16 @@ async function initWorkout() {
         durationSum = durationSum + lastWorkout.exercises[i].duration
   }
   console.log(durationSum)
+
+  // Render last workout
   if (lastWorkout) {
-    
     document
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise.html?id=${lastWorkout._id}`);
+    // small div to contain new id
+    const newContainer = document.querySelector(".prev-workout-content")
+    // add id to each smaller containers
+    newContainer.setAttribute("id", lastWorkout._id)
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
       totalDuration: durationSum,
@@ -18,13 +23,39 @@ async function initWorkout() {
       ...tallyExercises(lastWorkout.exercises)
     };
 
-    renderWorkoutSummary(workoutSummary);
+    renderWorkoutSummary(workoutSummary, lastWorkout._id,true);
   } else {
     renderNoWorkoutText()
   }
-
+  // Get all past workouts
+  
   const allWorkouts = await API.getAllWorkouts()
+  // remove last workout
+  allWorkouts.pop()
   console.log("All workouts", allWorkouts)
+  if (allWorkouts) {
+    allWorkouts.forEach(workout => {
+    document.querySelector("a[href='/exercise?']")
+    // small div to contain new id
+    const newContainer = document.createElement("div")
+    // add id to each smaller containers
+    newContainer.setAttribute("id", workout._id)
+    const mainContainer = document.querySelector(".container")
+    // append smaller containers to the main larger container
+    mainContainer.appendChild(newContainer)
+    const workoutSummary = {
+      date: formatDate(workout.day),
+      totalDuration: durationSum,
+      numExercises: workout.exercises.length,
+      ...tallyExercises(workout.exercises)
+    };
+
+    renderWorkoutSummary(workoutSummary, workout._id);
+  })
+  } else {
+    renderNoWorkoutText()
+  }
+  
 }
 
 function tallyExercises(exercises) {
@@ -52,9 +83,10 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(options);
 }
 
-function renderWorkoutSummary(summary) {
-  const container = document.querySelector(".workout-stats");
-
+function renderWorkoutSummary(summary, id, lastWorkout) {
+  const container = document.getElementById(`${id}`);
+  // if not the last workout, apply class 'rest-workout-container'  for styling
+  !lastWorkout? container.setAttribute("class","rest-workout-container"):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
     date: "Date",
     totalDuration: "Total Workout Duration",
