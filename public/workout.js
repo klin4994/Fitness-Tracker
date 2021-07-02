@@ -85,28 +85,28 @@ function formatDate(date) {
 
 function renderWorkoutSummary(summary, id, lastWorkout) {
   const container = document.getElementById(`${id}`);
-  // if not the last workout, apply class 'rest-workout-container'  for styling
-  !lastWorkout? container.setAttribute("class","rest-workout-container"):container.setAttribute("class","prev-workout")
+  // if not the last workout, apply class 'rest-workout-container' for styling
+  !lastWorkout? container.setAttribute("class","rest-workout-container card border-danger "):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
     date: "Date",
-    totalDuration: "Total Workout Duration",
+    totalDuration: "Workout Duration (min) ",
     numExercises: "Exercises Performed",
-    totalWeight: "Total Weight Lifted",
-    totalSets: "Total Sets Performed",
-    totalReps: "Total Reps Performed",
-    totalDistance: "Total Distance Covered"
+    totalWeight: "Weight Lifted (kg)",
+    totalSets: "Sets Performed",
+    totalReps: "Reps Performed",
+    totalDistance: "Distance Covered (kg)"
   };
 
   Object.keys(summary).forEach(key => {
     const p = document.createElement("p");
     const strong = document.createElement("strong");
-
+    
     strong.textContent = workoutKeyMap[key];
     const textNode = document.createTextNode(`: ${summary[key]}`);
 
     p.appendChild(strong);
     p.appendChild(textNode);
-
+    if(key==='date'){p.setAttribute('class','card-header');strong.setAttribute('class','card-header1')};
     container.appendChild(p);
   });
 }

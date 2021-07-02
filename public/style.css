@@ -456,14 +456,26 @@ div.wrapper.workout {
   height:max-content
 }
 
-.orange{
-  padding:0
+.rest-workout-container {
+  margin: 1em auto;
+  min-width: 100%;
+  
 }
 
-.rest-workout-container{
-  border: 1px solid 
+
+.rest-workout-container p strong {
+  padding-left: 1rem;
 }
 
+.card-header{
+  font-size:1.5rem;
+  color:rgb(253, 117, 27)
+}
+
+.card-header1 {
+  font-size:1.5rem;
+  color:rgb(253, 117, 27)
+}
 
 @keyframes toast {
   50% {
