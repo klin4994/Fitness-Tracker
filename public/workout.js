@@ -88,13 +88,13 @@ function renderWorkoutSummary(summary, id, lastWorkout) {
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card border-danger "):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
-    date: "Date",
-    totalDuration: "Workout Duration (min) ",
-    numExercises: "Exercises Performed",
-    totalWeight: "Weight Lifted (kg)",
-    totalSets: "Sets Performed",
-    totalReps: "Reps Performed",
-    totalDistance: "Distance Covered (kg)"
+    date: "",
+    totalDuration: "Duration (min): ",
+    numExercises: "Exercises:",
+    totalWeight: "Weight (kg):",
+    totalSets: "Sets: ",
+    totalReps: "Reps: ",
+    totalDistance: "Distance (km):"
   };
 
   Object.keys(summary).forEach(key => {
@@ -102,7 +102,10 @@ function renderWorkoutSummary(summary, id, lastWorkout) {
     const strong = document.createElement("strong");
     
     strong.textContent = workoutKeyMap[key];
-    const textNode = document.createTextNode(`: ${summary[key]}`);
+    // workout data (e.g 50 mins, 12 reps...)
+    const textNode = document.createElement('span');
+    textNode.textContent = `${summary[key]}`;
+    textNode.setAttribute('class', 'workout-data');
 
     p.appendChild(strong);
     p.appendChild(textNode);
@@ -115,6 +118,7 @@ function renderNoWorkoutText() {
   const container = document.querySelector(".workout-stats");
   const p = document.createElement("p");
   const strong = document.createElement("strong");
+  
   strong.textContent = "You have not created a workout yet!"
 
   p.appendChild(strong);

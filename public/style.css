@@ -459,12 +459,12 @@ div.wrapper.workout {
 .rest-workout-container {
   margin: 1em auto;
   min-width: 100%;
-  
 }
 
 
 .rest-workout-container p strong {
   padding-left: 1rem;
+  position:absolute;
 }
 
 .card-header{
@@ -477,6 +477,9 @@ div.wrapper.workout {
   color:rgb(253, 117, 27)
 }
 
+.workout-data {
+  margin-left: 200px;
+}
 @keyframes toast {
   50% {
     opacity: 1;
