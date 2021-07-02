@@ -27,9 +27,7 @@
 <p>Pull request welcomed!</p>
 <br>
 <h1>Tests</h1>
-<p>Please use the following credentials to sign in:</p>
-<p>Email: c1@email.com </p> 
-<p>Password: 111</p> 
+<p>N/A</p> 
 <br>
 <h1>Questions</h1>
 <p><span>My Github profile: </span><a href="https://github.com/klin4994" class="col-12">https://github.com/klin4994</a></p>
