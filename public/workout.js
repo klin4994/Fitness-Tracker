@@ -22,6 +22,9 @@ async function initWorkout() {
   } else {
     renderNoWorkoutText()
   }
+
+  const allWorkouts = await API.getAllWorkouts()
+  console.log("All workouts", allWorkouts)
 }
 
 function tallyExercises(exercises) {

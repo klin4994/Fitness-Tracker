@@ -67,6 +67,17 @@ app.post("/api/workouts", ({body}, res) => {
   });
 })
 
+// get all workouts
+app.get("/api/allworkouts", (req, res) => {
+  dbs.find({})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+})
+
 
 
 app.listen(PORT, () => {

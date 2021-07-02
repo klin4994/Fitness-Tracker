@@ -42,4 +42,12 @@ const API = {
 
     return json;
   },
+
+  async getAllWorkouts() {
+    const res = await fetch ('/api/allworkouts')
+    const json = await res.json();
+
+    return json;
+
+  }
 };
