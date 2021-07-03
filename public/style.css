@@ -22,8 +22,6 @@ nav {
   padding: 10px;
   line-height: 3;
   font-size: 1.2rem;
-
-  
 }
 
 a,
@@ -36,20 +34,20 @@ a:visited {
 
 .nav :hover {
   background-color: #fa3838;
-  color:white;
+  color: white;  
 }
 
-.current-page a {
+.current-page {
   color: #fa3838;
-  text-decoration: underline;
+  border-bottom: #fa3838 solid 3px;
 }
+
 header {
   height: 150px;
   padding-top: 4em;
   text-align: center;
   font-size: 1.5rem;
 }
-
 
 
 select {
@@ -537,6 +535,8 @@ div.wrapper.workout {
   background:linear-gradient(217deg, rgba(255, 153, 0, 0.582), rgba(255, 153, 0, 0.089) 70.71%)
 }
 
+
+
 @keyframes toast {
   50% {
     opacity: 1;
@@ -554,10 +554,19 @@ div.wrapper.workout {
   }
 }
 
+/* when the menu toggle appears */
 @media only screen and (max-width: 989px) {
     .navbar-nav{
         margin: 0 auto;
         width:150%
+    }
+    li {
+      width: 65%;
+      margin: 0 3em;
+    }
+    .current-page {
+      color: #fa3838;
+      border-bottom: none;
     }
 }
 
