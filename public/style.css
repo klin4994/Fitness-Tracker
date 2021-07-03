@@ -33,13 +33,13 @@ a:visited {
 }
 
 .nav :hover {
-  background-color: #fa3838;
-  color: white;  
+  background-color: rgb(255, 255, 255);
+  color: rgba(226, 12, 12, 0.658);  
 }
 
 .current-page {
-  color: #fa3838;
-  border-bottom: #fa3838 solid 3px;
+  color: rgba(226, 12, 12, 0.658);
+  border-bottom: rgba(226, 12, 12, 0.658) solid 3px;
 }
 
 header {
@@ -389,7 +389,7 @@ form > button {
 }
 
 .workout .ui.card {
-  padding-top: 25px;
+  margin: 1em auto;
 }
 
 .prev-workout {
@@ -436,20 +436,20 @@ form > button {
 #navbar-brand{
     margin-top:2px;
     margin-right:2em;
-    color: #FF4949;
+    color: orange;
 }
 
 #navbar-brand img{
     max-height:3em;
     height: auto;
     width: auto;
-    padding:0em;
+    bottom:10px
   }
   
 #navbar-brand h1 {
 display:inline;
 padding-top:100px;
-font-size: 2rem
+font-size: 3rem
 }
 
 .navbar {
@@ -565,7 +565,7 @@ div.wrapper.workout {
       margin: 0 3em;
     }
     .current-page {
-      color: #fa3838;
+      color: rgba(226, 12, 12, 0.658);
       border-bottom: none;
     }
 }

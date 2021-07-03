@@ -87,7 +87,7 @@ function formatDate(date) {
 function renderLastWorkoutSummary(summary, id, lastWorkout) {
   const container = document.getElementById(`${id}`);
   // if not the last workout, apply class 'rest-workout-container' for styling
-  !lastWorkout? container.setAttribute("class","rest-workout-container card border-danger "):container.setAttribute("class","prev-workout")
+  !lastWorkout? container.setAttribute("class","rest-workout-container card raised "):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
     date: "",
     totalDuration: "Duration (min): ",
@@ -120,7 +120,7 @@ function renderLastWorkoutSummary(summary, id, lastWorkout) {
 function renderWorkoutSummary(summary, id, lastWorkout) {
   const container = document.getElementById(`${id}`);
   // if not the last workout, apply class 'rest-workout-container' for styling
-  !lastWorkout? container.setAttribute("class","rest-workout-container card  "):container.setAttribute("class","prev-workout")
+  !lastWorkout? container.setAttribute("class","rest-workout-container card ui raised"):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
     date: "",
     totalDuration: "Duration (min): ",
