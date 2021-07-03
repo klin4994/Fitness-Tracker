@@ -40,7 +40,7 @@ async function initWorkout() {
     const newContainer = document.createElement("div")
     // add id to each smaller containers
     newContainer.setAttribute("id", workout._id)
-    const mainContainer = document.querySelector(".container")
+    const mainContainer = document.querySelector(".workouts-container")
     // append smaller containers to the main larger container
     mainContainer.appendChild(newContainer)
     const workoutSummary = {
