@@ -17,12 +17,13 @@ body {
 }
 
 nav {
-  background-color: #e43535;
-  color: #ffffff;
+  background-color: #f5f3f3;
+  color: #000000;
   padding: 10px;
   line-height: 3;
   font-size: 1.2rem;
-  background-image: linear-gradient(to right, #e43535, rgb(253, 117, 27));
+
+  
 }
 
 a,
@@ -33,10 +34,15 @@ a:visited {
   color: inherit;
 }
 
-.navbar-nav :hover {
-  background-color: #e43535
+.nav :hover {
+  background-color: #fa3838;
+  color:white;
 }
 
+.current-page a {
+  color: #fa3838;
+  text-decoration: underline;
+}
 header {
   height: 150px;
   padding-top: 4em;
@@ -425,8 +431,14 @@ form > button {
   padding: 10px;
 } 
 
+.navbar-toggler img{
+  max-height:2em;
+}
+
 #navbar-brand{
-    margin-right:3em
+    margin-top:2px;
+    margin-right:2em;
+    color: #FF4949;
 }
 
 #navbar-brand img{
@@ -505,6 +517,7 @@ div.wrapper.workout {
 }
 
 .jumbotron {
+  padding:20px;
   top: 50%!important;
   margin: 0.5rem;
 }
@@ -518,7 +531,10 @@ div.wrapper.workout {
 }
 
 .jumbotron-add {
-  background:linear-gradient(217deg, rgba(255, 230, 0, 0.582), rgba(255, 230, 0, 0.089) 70.71%)
+  background:linear-gradient(217deg, rgba(255, 230, 0, 0.705), rgba(255, 230, 0, 0.171) 70.71%)
+}
+.jumbotron-new {
+  background:linear-gradient(217deg, rgba(255, 153, 0, 0.582), rgba(255, 153, 0, 0.089) 70.71%)
 }
 
 @keyframes toast {
