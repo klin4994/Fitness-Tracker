@@ -462,7 +462,10 @@ div.wrapper.workout {
 }
 
 .rest-workout-container p {
-  font-size: 2rem;
+  font-size: 1rem;
+}
+.card-header span {
+  font-size: 1.2rem;
 }
 
 .rest-workout-container span strong {
@@ -477,9 +480,10 @@ div.wrapper.workout {
 
 .card-header{
   font-size:1.5rem;
+  padding-top: 0;
   color:rgb(255, 255, 255);
   border-radius: 1em;
-  background-color: rgba(245, 40, 40, 0.76)
+  background-color: rgba(255, 101, 30, 0.76)
 }
 
 .card-header1 {
