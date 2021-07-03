@@ -436,7 +436,7 @@ form > button {
 #navbar-brand{
     margin-top:2px;
     margin-right:2em;
-    color: orange;
+    color: rgba(226, 12, 12, 0.658);
 }
 
 #navbar-brand img{
