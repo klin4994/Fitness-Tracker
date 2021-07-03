@@ -507,8 +507,16 @@ div.wrapper.workout {
 .jumbotron {
   top: 50%!important;
   margin: 0.5rem;
+}
+
+.jumbotron-workouts {
   background:linear-gradient(217deg, rgba(226, 12, 12, 0.582), rgba(255, 0, 0, 0.075) 70.71%)
 }
+
+.jumbotron-dashboard {
+  background:linear-gradient(217deg, rgba(12, 183, 226, 0.582), rgba(12, 183, 226, 0.096) 70.71%)
+}
+
 @keyframes toast {
   50% {
     opacity: 1;
