@@ -23,7 +23,7 @@ async function initWorkout() {
       ...tallyExercises(lastWorkout.exercises)
     };
 
-    renderWorkoutSummary(workoutSummary, lastWorkout._id,true);
+    renderLastWorkoutSummary(workoutSummary, lastWorkout._id,true);
   } else {
     renderNoWorkoutText()
   }
@@ -80,10 +80,11 @@ function formatDate(date) {
     day: "numeric"
   };
 
-  return new Date(date).toLocaleDateString(options);
+  return new Date(date).toLocaleDateString(undefined, options);
 }
 
-function renderWorkoutSummary(summary, id, lastWorkout) {
+// Last workout summary
+function renderLastWorkoutSummary(summary, id, lastWorkout) {
   const container = document.getElementById(`${id}`);
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card border-danger "):container.setAttribute("class","prev-workout")
@@ -96,7 +97,6 @@ function renderWorkoutSummary(summary, id, lastWorkout) {
     totalReps: "Reps: ",
     totalDistance: "Distance (km):"
   };
-
   Object.keys(summary).forEach(key => {
     const p = document.createElement("p");
     const strong = document.createElement("strong");
@@ -105,11 +105,46 @@ function renderWorkoutSummary(summary, id, lastWorkout) {
     // workout data (e.g 50 mins, 12 reps...)
     const textNode = document.createElement('span');
     textNode.textContent = `${summary[key]}`;
-    textNode.setAttribute('class', 'workout-data');
+    // if (key != 'date'){
+    //   textNode.setAttribute('class', 'workout-data');
+    // }
+    
 
     p.appendChild(strong);
     p.appendChild(textNode);
-    if(key==='date'){p.setAttribute('class','card-header');strong.setAttribute('class','card-header1')};
+    strong.setAttribute('class','card-header-last');
+    container.appendChild(p);
+  });
+}
+
+function renderWorkoutSummary(summary, id, lastWorkout) {
+  const container = document.getElementById(`${id}`);
+  // if not the last workout, apply class 'rest-workout-container' for styling
+  !lastWorkout? container.setAttribute("class","rest-workout-container card  "):container.setAttribute("class","prev-workout")
+  const workoutKeyMap = {
+    date: "",
+    totalDuration: "Duration (min): ",
+    numExercises: "Exercises:",
+    totalWeight: "Weight (kg):",
+    totalSets: "Sets: ",
+    totalReps: "Reps: ",
+    totalDistance: "Distance (km):"
+  };
+  Object.keys(summary).forEach(key => {
+    const p = document.createElement("p");
+    const strong = document.createElement("strong");
+    
+    strong.textContent = workoutKeyMap[key];
+    // workout data (e.g 50 mins, 12 reps...)
+    const textNode = document.createElement('span');
+    textNode.textContent = `${summary[key]}`;
+    if (key != 'date'){
+      textNode.setAttribute('class', 'workout-data');
+    }
+
+    p.appendChild(strong);
+    p.appendChild(textNode);
+    if(key==='date'&& !lastWorkout){p.setAttribute('class','card-header text-center');strong.setAttribute('class','card-header1')};
     container.appendChild(p);
   });
 }

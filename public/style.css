@@ -467,9 +467,16 @@ div.wrapper.workout {
   position:absolute;
 }
 
+.card{
+  background-color:FloralWhite;
+  padding:  0  0 10px  0   ;
+}
+
 .card-header{
   font-size:1.5rem;
-  color:rgb(253, 117, 27)
+  color:rgb(0, 0, 0);
+  border-radius: 1em;
+  background-color: wheat
 }
 
 .card-header1 {
@@ -477,8 +484,17 @@ div.wrapper.workout {
   color:rgb(253, 117, 27)
 }
 
+.card-header-last {
+  font-size:1.5rem;
+  color:rgb(253, 117, 27);
+  position:relative;
+}
 .workout-data {
   margin-left: 200px;
+}
+
+.text-center{
+  text-align:center;
 }
 @keyframes toast {
   50% {
