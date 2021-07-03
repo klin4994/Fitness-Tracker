@@ -458,25 +458,28 @@ div.wrapper.workout {
 
 .rest-workout-container {
   margin: 1em auto;
-  min-width: 100%;
+  min-width: 50%;
 }
 
+.rest-workout-container p {
+  font-size: 2rem;
+}
 
-.rest-workout-container p strong {
+.rest-workout-container span strong {
   padding-left: 1rem;
   position:absolute;
 }
 
 .card{
-  background-color:FloralWhite;
-  padding:  0  0 10px  0   ;
+  background-color:rgb(255, 253, 248);
+  padding:  0  0 10px  0 ;
 }
 
 .card-header{
   font-size:1.5rem;
-  color:rgb(0, 0, 0);
+  color:rgb(255, 255, 255);
   border-radius: 1em;
-  background-color: wheat
+  background-color: rgba(245, 40, 40, 0.76)
 }
 
 .card-header1 {
@@ -490,7 +493,7 @@ div.wrapper.workout {
   position:relative;
 }
 .workout-data {
-  margin-left: 200px;
+  margin-left: 150px;
 }
 
 .text-center{

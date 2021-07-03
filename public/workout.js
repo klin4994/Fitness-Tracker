@@ -131,7 +131,7 @@ function renderWorkoutSummary(summary, id, lastWorkout) {
     totalDistance: "Distance (km):"
   };
   Object.keys(summary).forEach(key => {
-    const p = document.createElement("p");
+    const p = document.createElement("span");
     const strong = document.createElement("strong");
     
     strong.textContent = workoutKeyMap[key];
