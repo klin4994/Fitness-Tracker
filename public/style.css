@@ -495,7 +495,6 @@ div.wrapper.workout {
   font-size:1.3rem;
   padding-top: 0;
   color:rgb(255, 255, 255);
-  border-radius: 1em;
   background-color: rgba(226, 12, 12, 0.658)
 }
 
@@ -538,7 +537,10 @@ div.wrapper.workout {
   background:linear-gradient(217deg, rgba(255, 153, 0, 0.582), rgba(255, 153, 0, 0.089) 70.71%)
 }
 
-
+.delete-btn {
+  float: right;
+  padding:3px
+}
 
 @keyframes toast {
   50% {
@@ -561,6 +563,7 @@ div.wrapper.workout {
   .card-header {
     text-align: center;
   }
+  
 
 }
 

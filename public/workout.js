@@ -106,11 +106,7 @@ function renderLastWorkout(summary, id, lastWorkout) {
     strong.textContent = workoutKeyMap[key];
     // workout data (e.g 50 mins, 12 reps...)
     const textNode = document.createElement('span');
-    textNode.textContent = `${summary[key]}`;
-    // if (key != 'date'){
-    //   textNode.setAttribute('class', 'workout-data');
-    // }
-    
+    textNode.textContent = `${summary[key]}`; 
 
     p.appendChild(strong);
     p.appendChild(textNode);
@@ -127,9 +123,19 @@ function renderRestWorkouts(summary, id, lastWorkout) {
   $(row).attr("class", "row g-0")
   // column to display workout data except date
   const workoutData = document.createElement('div')
-  $(workoutData).attr("class", "col-md-8")
-  
+  $(workoutData).attr("class", "col-md-5")
 
+  // action column
+  const actionSection = document.createElement('div')
+  $(actionSection).attr("class", "col-md-3")
+
+  // delete button
+  const deleteButton = document.createElement('button')
+  $(deleteButton)
+    .attr("id", `del-${id}`)
+    .attr("class", `delete-btn`)
+    .text("Delete")
+    .appendTo(actionSection)
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card ui raised"):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
@@ -163,12 +169,13 @@ function renderRestWorkouts(summary, id, lastWorkout) {
         <span>${summary[key]}</span>
         </div>`
       );
+    } else {
       $(workoutData).appendTo(row)
-    } else{
-    $(workoutData).append(
-      `<div class=" prev-workout-content">
-        <span><strong>${workoutKeyMap[key]}</strong><span class="data">${summary[key]}</span></span>
-      </div>`)
+      $(actionSection).appendTo(row)
+      $(workoutData).append(
+        `<div class=" prev-workout-content">
+          <span><strong>${workoutKeyMap[key]}</strong><span class="data">${summary[key]}</span></span>
+        </div>`)
     }
   });
 
