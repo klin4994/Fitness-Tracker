@@ -1,3 +1,4 @@
+$( document ).ready(function() {
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
   console.log("Last workout:", lastWorkout);
@@ -23,7 +24,7 @@ async function initWorkout() {
       ...tallyExercises(lastWorkout.exercises)
     };
 
-    renderLastWorkoutSummary(workoutSummary, lastWorkout._id,true);
+    renderLastWorkout(workoutSummary, lastWorkout._id,true);
   } else {
     renderNoWorkoutText()
   }
@@ -51,7 +52,7 @@ async function initWorkout() {
       ...tallyExercises(workout.exercises)
     };
 
-    renderWorkoutSummary(workoutSummary, workout._id, false);
+    renderRestWorkouts(workoutSummary, workout._id, false);
   })
   } else {
     renderNoWorkoutText()
@@ -79,13 +80,13 @@ function formatDate(date) {
     year: "numeric",
     month: "long",
     day: "numeric"
-  };
+  }; 
 
   return new Date(date).toLocaleDateString(undefined, options);
 }
 
 // Last workout summary
-function renderLastWorkoutSummary(summary, id, lastWorkout) {
+function renderLastWorkout(summary, id, lastWorkout) {
   const container = document.getElementById(`${id}`);
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card raised "):container.setAttribute("class","prev-workout")
@@ -118,8 +119,17 @@ function renderLastWorkoutSummary(summary, id, lastWorkout) {
   });
 }
 
-function renderWorkoutSummary(summary, id, lastWorkout) {
+function renderRestWorkouts(summary, id, lastWorkout) {
   const container = document.getElementById(`${id}`);
+
+  // create row for the card for grid arrangement
+  const row = document.createElement('div')
+  $(row).attr("class", "row g-0")
+  // column to display workout data except date
+  const workoutData = document.createElement('div')
+  $(workoutData).attr("class", "col-md-8")
+  
+
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card ui raised"):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
@@ -133,6 +143,7 @@ function renderWorkoutSummary(summary, id, lastWorkout) {
   };
   Object.keys(summary).forEach(key => {
     const p = document.createElement("span");
+
     const strong = document.createElement("strong");
     
     strong.textContent = workoutKeyMap[key];
@@ -143,11 +154,26 @@ function renderWorkoutSummary(summary, id, lastWorkout) {
       textNode.setAttribute('class', 'workout-data');
     }
 
-    p.appendChild(strong);
     p.appendChild(textNode);
-    if(key==='date'&& !lastWorkout){p.setAttribute('class','card-header text-center');strong.setAttribute('class','card-header1')};
-    container.appendChild(p);
+    if(key === 'date' && !lastWorkout){
+      p.setAttribute('class','card-header text-center');
+      strong.setAttribute('class','card-header1')
+      $(row).append(
+        `<div class="col-md-4 card-header">
+        <span>${summary[key]}</span>
+        </div>`
+      );
+      $(workoutData).appendTo(row)
+    } else{
+    $(workoutData).append(
+      `<div class=" prev-workout-content">
+        <span><strong>${workoutKeyMap[key]}</strong><span class="data">${summary[key]}</span></span>
+      </div>`)
+    }
   });
+
+  $(container).append(row)
+  
 }
 
 function renderNoWorkoutText() {
@@ -159,6 +185,8 @@ function renderNoWorkoutText() {
 
   p.appendChild(strong);
   container.appendChild(p);
+  
 }
 
 initWorkout();
+})

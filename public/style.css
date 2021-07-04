@@ -467,21 +467,24 @@ div.wrapper.workout {
 }
 
 .rest-workout-container {
-  margin: 1em auto;
   min-width: 50%;
 }
 
-.rest-workout-container p {
-  font-size: 1rem;
-}
-.card-header span {
-  font-size: 1.2rem;
+.prev-workout-content{
+  display: block;
+  padding: 5px;
+  
 }
 
-.rest-workout-container span strong {
-  padding-left: 1rem;
-  position:absolute;
+.prev-workout-content span strong{
+  position: relative;
 }
+
+.data {
+  position: absolute;
+  left:10rem
+}
+
 
 .card{
   background-color:rgb(255, 253, 248);
@@ -489,7 +492,7 @@ div.wrapper.workout {
 }
 
 .card-header{
-  font-size:1.5rem;
+  font-size:1.3rem;
   padding-top: 0;
   color:rgb(255, 255, 255);
   border-radius: 1em;
@@ -554,6 +557,13 @@ div.wrapper.workout {
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .card-header {
+    text-align: center;
+  }
+
+}
+
 /* when the menu toggle appears */
 @media only screen and (max-width: 989px) {
     .navbar-nav{
@@ -568,5 +578,6 @@ div.wrapper.workout {
       color: rgba(226, 12, 12, 0.658);
       border-bottom: none;
     }
+
 }
 
