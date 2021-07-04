@@ -24,11 +24,15 @@ async function initWorkout() {
       ...tallyExercises(lastWorkout.exercises)
     };
 
-    renderLastWorkout(workoutSummary, lastWorkout._id,true);
+    renderLastWorkout(workoutSummary, lastWorkout._id, true);
   } else {
     renderNoWorkoutText()
   }
-  // Get all past workouts
+  loadRestWorkout()
+}
+
+// Get all past workouts
+async function loadRestWorkout() {
   
   const allWorkouts = await API.getAllWorkouts()
 
@@ -37,6 +41,11 @@ async function initWorkout() {
   if (allWorkouts) {
     // loop throught the array except the first (latest date) workout in the array
     allWorkouts.slice(1).forEach(workout => {
+    // get total workout duration by summing up the duration of all of its exercises
+    let workoutTotalDuration=0;
+    workout.exercises.forEach(exercise => {
+      workoutTotalDuration += exercise.duration
+    })
     document.querySelector("a[href='/exercise?']")
     // small div to contain new id
     const newContainer = document.createElement("div")
@@ -47,7 +56,7 @@ async function initWorkout() {
     mainContainer.appendChild(newContainer)
     const workoutSummary = {
       date: formatDate(workout.day),
-      totalDuration: durationSum,
+      totalDuration: workoutTotalDuration,
       numExercises: workout.exercises.length,
       ...tallyExercises(workout.exercises)
     };
@@ -57,7 +66,7 @@ async function initWorkout() {
   } else {
     renderNoWorkoutText()
   }
-  
+
 }
 
 function tallyExercises(exercises) {
@@ -88,6 +97,19 @@ function formatDate(date) {
 // Last workout summary
 function renderLastWorkout(summary, id, lastWorkout) {
   const container = document.getElementById(`${id}`);
+  // delete button
+  const deleteButton = document.createElement('button')
+  $(deleteButton)
+    .attr("id", `del-${id}`)
+    .attr("class", `delete-btn`)
+    .text("Delete")
+    .appendTo(container)
+    .click(function() {
+      API.deleteWorkout(this.id.slice(4)).then(()=>{
+        // reload the cards for the rest of the workouts
+        $( ".rest-workout-container" ).remove()
+        initWorkout()})
+    })
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card raised "):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
@@ -137,7 +159,10 @@ function renderRestWorkouts(summary, id, lastWorkout) {
     .text("Delete")
     .appendTo(actionSection)
     .click(function() {
-      API.deleteWorkout(this.id.slice(4)).then(()=>{console.log("deleted!")})
+      API.deleteWorkout(this.id.slice(4)).then(()=>{
+        // reload the cards for the rest of the workouts
+        $( ".rest-workout-container" ).remove()
+        loadRestWorkout()})
     })
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card ui raised"):container.setAttribute("class","prev-workout")

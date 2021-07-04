@@ -81,7 +81,6 @@ app.get("/api/allworkouts", (req, res) => {
 
 // delete selected workouts
 app.delete("/api/delete/:id", (req, res) => {
-  console.log(req.params.id)
   dbs.findByIdAndDelete(req.params.id, function (err, docs) {
     if (err){
         console.log(err)
@@ -92,7 +91,6 @@ app.delete("/api/delete/:id", (req, res) => {
 })
   .then(dbWorkout => {
     res.json(dbWorkout);
-    console.log(dbWorkout)
   })
   .catch(err => {
     res.json(err);
