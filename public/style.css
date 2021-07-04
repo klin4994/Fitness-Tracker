@@ -537,12 +537,23 @@ div.wrapper.workout {
   background:linear-gradient(217deg, rgba(255, 153, 0, 0.582), rgba(255, 153, 0, 0.089) 70.71%)
 }
 
+{
+
+}
 .delete-btn {
   float: right;
-  padding:3px;
+  padding:4px 0 4px 4px;
   margin:5px 5px 0 0;
-}
+  font-size: 0.8rem;
+  color:white;
+  background-color:rgb(223, 0, 0);
+  border-radius:3px;
 
+}
+.delete-btn:hover {
+  cursor: pointer;
+  background-color:rgb(182, 3, 3);
+}
 @keyframes toast {
   50% {
     opacity: 1;

@@ -1,4 +1,16 @@
 $( document ).ready(function() {
+
+// Modal for confirming of deletion of workouts
+$('#confirm-delete').click(function() {
+  var id = $(`#deleteModal`).attr('data-id');
+  API.deleteWorkout(id).then(()=>{
+  // reload the cards for the rest of the workouts
+  $( ".rest-workout-container" ).remove()
+  loadRestWorkout()})
+  // hide the modal after confirming
+  $('#deleteModal').modal('hide');
+})
+
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
   console.log("Last workout:", lastWorkout);
@@ -150,19 +162,24 @@ function renderRestWorkouts(summary, id, lastWorkout) {
   // action column
   const actionSection = document.createElement('div')
   $(actionSection).attr("class", "col-md-3")
-
+  // delete icon for the button
+  const deleteIcon = document.createElement("i")
+  $(deleteIcon).attr("class", "delete icon")
   // delete button
-  const deleteButton = document.createElement('button')
+  const deleteButton = document.createElement('div')
   $(deleteButton)
     .attr("id", `del-${id}`)
-    .attr("class", `delete-btn`)
-    .text("Delete")
+    .attr("class", `small negative ui delete-btn`)
+    .attr("data-bs-toggle", `modal`)
+    .attr("data-bs-target", `#deleteModal`)
+    .text("Delete ")
     .appendTo(actionSection)
+    .append(deleteIcon)
     .click(function() {
-      API.deleteWorkout(this.id.slice(4)).then(()=>{
-        // reload the cards for the rest of the workouts
-        $( ".rest-workout-container" ).remove()
-        loadRestWorkout()})
+      // get current id
+      var id = $(this).attr("id").slice(4)
+      // assign the data to the modal under 'data-id' attribute
+      $('#deleteModal').attr('data-id', id).modal('show');
     })
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card ui raised"):container.setAttribute("class","prev-workout")
@@ -223,10 +240,6 @@ function renderNoWorkoutText() {
   
 }
 
-// delete workout action
-// $(".delete-btn").click(function() {
-//   console.log("this.id")
-// })
 
 initWorkout();
 })
