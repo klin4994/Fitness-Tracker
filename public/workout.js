@@ -136,6 +136,9 @@ function renderRestWorkouts(summary, id, lastWorkout) {
     .attr("class", `delete-btn`)
     .text("Delete")
     .appendTo(actionSection)
+    .click(function() {
+      API.deleteWorkout(this.id.slice(4)).then(()=>{console.log("deleted!")})
+    })
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card ui raised"):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
@@ -194,6 +197,11 @@ function renderNoWorkoutText() {
   container.appendChild(p);
   
 }
+
+// delete workout action
+// $(".delete-btn").click(function() {
+//   console.log("this.id")
+// })
 
 initWorkout();
 })

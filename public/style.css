@@ -539,7 +539,8 @@ div.wrapper.workout {
 
 .delete-btn {
   float: right;
-  padding:3px
+  padding:3px;
+  margin:5px 5px 0 0;
 }
 
 @keyframes toast {
@@ -564,6 +565,11 @@ div.wrapper.workout {
     text-align: center;
   }
   
+  .delete-btn {
+    float: right;
+    padding:3px;
+    margin:0 5px 5px 0;
+  }
 
 }
 

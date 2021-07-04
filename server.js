@@ -79,7 +79,25 @@ app.get("/api/allworkouts", (req, res) => {
     });
 })
 
-
+// delete selected workouts
+app.delete("/api/delete/:id", (req, res) => {
+  console.log(req.params.id)
+  dbs.findByIdAndDelete(req.params.id, function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Deleted : ", docs);
+    }
+})
+  .then(dbWorkout => {
+    res.json(dbWorkout);
+    console.log(dbWorkout)
+  })
+  .catch(err => {
+    res.json(err);
+  });
+})
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);

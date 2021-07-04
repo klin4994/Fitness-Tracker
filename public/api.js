@@ -46,8 +46,19 @@ const API = {
   async getAllWorkouts() {
     const res = await fetch ('/api/allworkouts')
     const json = await res.json();
-
     return json;
+  },
 
+  async deleteWorkout(id) {
+    console.log(id)
+    const res = await fetch(`/api/delete/${id}`,{
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    console.log(res)
+    const json = await res.json();
+    return json;
   }
 };
