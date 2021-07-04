@@ -30,11 +30,12 @@ async function initWorkout() {
   // Get all past workouts
   
   const allWorkouts = await API.getAllWorkouts()
-  // remove last workout
-  allWorkouts.pop()
+
+   
   console.log("All workouts", allWorkouts)
   if (allWorkouts) {
-    allWorkouts.forEach(workout => {
+    // loop throught the array except the first (latest date) workout in the array
+    allWorkouts.slice(1).forEach(workout => {
     document.querySelector("a[href='/exercise?']")
     // small div to contain new id
     const newContainer = document.createElement("div")
@@ -50,7 +51,7 @@ async function initWorkout() {
       ...tallyExercises(workout.exercises)
     };
 
-    renderWorkoutSummary(workoutSummary, workout._id);
+    renderWorkoutSummary(workoutSummary, workout._id, false);
   })
   } else {
     renderNoWorkoutText()

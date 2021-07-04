@@ -69,7 +69,8 @@ app.post("/api/workouts", ({body}, res) => {
 
 // get all workouts
 app.get("/api/allworkouts", (req, res) => {
-  dbs.find({})
+  // reverse _id, for descending date order
+  dbs.find().sort({ _id: -1 })
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
