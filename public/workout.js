@@ -157,7 +157,7 @@ function renderRestWorkouts(summary, id, lastWorkout) {
   $(row).attr("class", "row g-0")
   // column to display workout data except date
   const workoutData = document.createElement('div')
-  $(workoutData).attr("class", "col-md-5")
+  $(workoutData).attr("class", "col-md-6")
 
   // action column
   const actionSection = document.createElement('div')
@@ -210,7 +210,7 @@ function renderRestWorkouts(summary, id, lastWorkout) {
       p.setAttribute('class','card-header text-center');
       strong.setAttribute('class','card-header1')
       $(row).append(
-        `<div class="col-md-4 card-header">
+        `<div class="col-md-3 card-header">
         <span>${summary[key]}</span>
         </div>`
       );

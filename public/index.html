@@ -36,31 +36,6 @@
   </div>
   <!-- nav bar -->
   <div class="nav-background"></div>
-  <!-- <nav class="navbar navbar-light navbar-expand-lg bg-faded justify-content-end">
-    <div class="container">
-        <div id="logo"></div><a href="/" id="navbar-brand"><img src="./images/dash.png"> <h1>FiTracker</h1></a></div>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-          <img src="./images/more.png">
-        </button>
-        <div class="navbar-collapse collapse w-100" id="navbarCollapse">
-            <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
-              <li class=" nav-item current-page ">
-                <a class="nav-item" href="/">Latest workout</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-item" href="/stats.html">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-item" href="/exercise.html">Continue Workout</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-item" href="/exercise.html">New Workout</a>
-              </li>  
-            </ul>
-        </div>
-    </div>
-</nav> -->
-
   <nav class="navbar navbar-expand-lg navbar-light content-wrapper">
     <a href="/" id="navbar-brand"><img src="./images/dash.png"> <h1 class="navbar-center">FiTracker</h1></a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -90,10 +65,10 @@
   </div>
 
   
-  <div class="row">
+  <div id="workout-content" class="row">
     <div class="col-lg-3">
       <!-- date picker -->
-      <form id="filter" class="shadow-sm p-9 bg-white rounded" action="">
+      <form id="filter" class="shadow-sm p-9 bg-white rounded card" action="">
         <label id="exercise-name-label" for="exercise-name">Exercise Name
           <input id="exercise-name" name="exercise-name" type="input" placeholder="Exercise name">
         </label> 

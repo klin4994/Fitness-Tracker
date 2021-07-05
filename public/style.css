@@ -497,7 +497,7 @@ div.wrapper.workout {
 }
 
 .rest-workout-container {
-  min-width: 50%;
+  min-width: 100%;
 }
 
 .prev-workout-content{
@@ -595,6 +595,10 @@ div.wrapper.workout {
 ul{
   margin-right: 1rem;
   margin-left:auto;
+}
+
+#workout-content{
+  margin-top:2rem;
 }
 @keyframes toast {
   50% {
