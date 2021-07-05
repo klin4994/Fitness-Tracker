@@ -7,9 +7,13 @@
 }
 
 html,
-body,
 .wrapper {
   height: 100%;
+}
+
+body {
+  max-width:90rem;
+  margin: 0 auto;
 }
 
 body {
@@ -19,9 +23,18 @@ body {
 nav {
   background-color: #f5f3f3;
   color: #000000;
-  padding: 10px;
   line-height: 3;
   font-size: 1.2rem;
+  min-height: 3.8em;
+}
+
+.nav-background{
+  background-color: #f5f3f3;
+  left: 0;
+  position:absolute;
+  min-width: 100vw;
+  height: 4.6rem;
+
 }
 
 a,
@@ -461,6 +474,9 @@ font-size: 3rem
   padding-bottom: 6px;
 }
 
+.navbar-collapse{
+  float: right;
+}
 div.wrapper.workout {
   background-color:rgb(255, 255, 255);
   height:max-content
@@ -495,7 +511,8 @@ div.wrapper.workout {
   font-size:1.3rem;
   padding-top: 0;
   color:rgb(255, 255, 255);
-  background-color: rgba(226, 12, 12, 0.658)
+  background-color:rgba(255, 94, 0, 0.795);
+  /* background-color: rgba(226, 12, 12, 0.658) */
 }
 
 .card-header1 {
@@ -537,24 +554,28 @@ div.wrapper.workout {
   background:linear-gradient(217deg, rgba(255, 153, 0, 0.582), rgba(255, 153, 0, 0.089) 70.71%)
 }
 
-{
-
-}
 .delete-btn {
   float: right;
-  padding:4px 0 4px 4px;
+  padding:3px 0 3px 3px;
   margin:5px 5px 0 0;
   font-size: 0.8rem;
   color:rgb(223, 0, 0);
   border:rgb(223, 0, 0) 1px solid;
-  border-radius:3px;
+  border-radius:5px;
 
 }
 .delete-btn:hover {
   cursor: pointer;
   color:white;
-  background-color:rgb(182, 3, 3);
-  border:rgb(182, 3, 3) 1px solid;
+  background-color:rgb(216, 3, 3);
+  border:rgb(216, 3, 3) 1px solid;
+}
+
+
+#filter {
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+  padding:1rem;
 }
 
 @keyframes toast {
@@ -600,6 +621,12 @@ div.wrapper.workout {
     .current-page {
       color: rgba(226, 12, 12, 0.658);
       border-bottom: none;
+    }
+
+    #filter {
+      margin-right: 3rem;
+      margin-bottom: 1rem;
+      max-width: 26em;
     }
 
 }
