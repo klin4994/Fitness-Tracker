@@ -72,7 +72,7 @@ app.get("/api/allworkouts", (req, res) => {
   // reverse _id, for descending date order
   dbs.find().sort({ _id: -1 })
     .then(dbWorkout => {
-      res.json(dbWorkout);
+      res.json(dbWorkout.slice(1));
     })
     .catch(err => {
       res.json(err);
@@ -93,6 +93,33 @@ app.delete("/api/delete/:id", (req, res) => {
     res.json(dbWorkout);
   })
   .catch(err => {
+    res.json(err);
+  });
+})
+
+// get workouts based on chosen filter criteria
+app.get('/api/filter/:searchName', (req, res) => {
+  console.log(req.params.searchName)
+  dbs.find({$and:[
+    // { 'exercises.type': { $regex : req.params.type } },
+    { 'exercises.name': { $regex : req.params.searchName, '$options' : 'i' } },
+    // { 'exercises.distance': {
+    //   $gte: req.params.distanceDown, 
+    //   $lt: req.params.distanceUp
+    // } },
+    // { 'exercises.duration': {
+    //   $gte: req.params.durationDown, 
+    //   $lt: req.params.durationUp
+    // } },
+    // { 'day': {
+    //   $gte: req.params.dayDown, 
+    //   $lt: req.params.dayUp
+    // } },
+  ]}).sort({ _id: -1  })
+  .then(dbWorkout => {
+    console.log(dbWorkout)
+    res.json(dbWorkout)
+  })    .catch(err => {
     res.json(err);
   });
 })

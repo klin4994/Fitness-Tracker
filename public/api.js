@@ -50,7 +50,6 @@ const API = {
   },
 
   async deleteWorkout(id) {
-    console.log(id)
     const res = await fetch(`/api/delete/${id}`,{
       method: 'delete',
       headers: {
@@ -59,6 +58,16 @@ const API = {
     })
     console.log(res)
     const json = await res.json();
+    return json;
+  },
+
+  async getFilteredWorkouts(searchName) {
+    const res = await fetch(`/api/filter/${searchName}`,{
+      method: 'get',
+      headers: { "Content-Type": "application/json" }
+    })
+    const json = await res.json();
+    console.log(json)
     return json;
   }
 };

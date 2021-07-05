@@ -1,14 +1,37 @@
 $( document ).ready(function() {
+  
+  $("#filter").submit( async function(e) {
+    loadFiltered(e)
+  })
+
+  // Function to load filtered results
+  async  function loadFiltered(e) {
+  e.preventDefault()
+  const nameFilter = $("#exercise-name")[0].value
+  $( ".rest-workout-container" ).remove()
+  console.log(nameFilter)
+  const filteredWorkouts = await API.getFilteredWorkouts(nameFilter)
+  loadWorkouts(filteredWorkouts)
+  // hide the modal after confirming
+  $('#deleteModal').modal('hide')
+}
 
 // Modal for confirming of deletion of workouts
-$('#confirm-delete').click(function() {
+$('#confirm-delete').click(function(e) {
   var id = $(`#deleteModal`).attr('data-id');
-  API.deleteWorkout(id).then(()=>{
-  // reload the cards for the rest of the workouts
+  // if deleting from the filtered list (condition = input field not clear),
+  // to be changed to filter toggle.
+  if ($("#exercise-name")[0].value.length !==0) {
+    API.deleteWorkout(id).then(loadFiltered(e))
+
+  } else {
+  // if from unfiltered list
+  API.deleteWorkout(id).then( async function () {
+  const restWorkouts = await API.getAllWorkouts()
   $( ".rest-workout-container" ).remove()
-  loadRestWorkout()})
-  // hide the modal after confirming
+  loadWorkouts(restWorkouts)})
   $('#deleteModal').modal('hide');
+  }
 })
 
 async function initWorkout() {
@@ -18,8 +41,6 @@ async function initWorkout() {
   for (i=0; i<lastWorkout.exercises.length; i++) {
         durationSum = durationSum + lastWorkout.exercises[i].duration
   }
-  console.log(durationSum)
-
   // Render last workout
   if (lastWorkout) {
     document
@@ -28,7 +49,7 @@ async function initWorkout() {
     // small div to contain new id
     const newContainer = document.querySelector(".prev-workout-content")
     // add id to each smaller containers
-    newContainer.setAttribute("id", lastWorkout._id)
+    newContainer.setAttribute("id", "last"+lastWorkout._id)
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
       totalDuration: durationSum,
@@ -36,23 +57,20 @@ async function initWorkout() {
       ...tallyExercises(lastWorkout.exercises)
     };
 
-    renderLastWorkout(workoutSummary, lastWorkout._id, true);
+    renderLastWorkout(workoutSummary, "last"+lastWorkout._id, true);
   } else {
     renderNoWorkoutText()
   }
-  loadRestWorkout()
+  const restWorkouts = await API.getAllWorkouts()
+  loadWorkouts(restWorkouts)
 }
 
-// Get all past workouts
-async function loadRestWorkout() {
-  
+// append all workout cards provided by the parameter
+async function loadWorkouts(workouts) {
   const allWorkouts = await API.getAllWorkouts()
-
-   
-  console.log("All workouts", allWorkouts)
-  if (allWorkouts) {
+  if (workouts) {
     // loop throught the array except the first (latest date) workout in the array
-    allWorkouts.slice(1).forEach(workout => {
+    workouts.forEach(workout => {
     // get total workout duration by summing up the duration of all of its exercises
     let workoutTotalDuration=0;
     workout.exercises.forEach(exercise => {
