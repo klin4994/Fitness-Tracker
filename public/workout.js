@@ -13,6 +13,9 @@ $( document ).ready(function() {
   const totalDurationLowFilter = $("#total-duration-low")[0].value
   const dateHighFilter = $("#date-finish")[0].value;
   const dateLowFilter = $("#date-start")[0].value;
+  const distanceHighFilter = $("#distance-finish")[0].value;
+  const distanceLowFilter = $("#distance-start")[0].value
+  console.log(distanceHighFilter)
   $( ".rest-workout-container" ).remove()
   console.log(dateHighFilter.toLocaleString('en-US', {
     weekday: 'short', // long, short, narrow
@@ -23,7 +26,7 @@ $( document ).ready(function() {
     minute: 'numeric', // numeric, 2-digit
     second: 'numeric', // numeric, 2-digit
 }));
-  const filteredWorkouts = await API.getFilteredWorkouts(typeFilter,nameFilter,"", "", dateHighFilter, dateLowFilter)
+  const filteredWorkouts = await API.getFilteredWorkouts(typeFilter,nameFilter,"", "", dateHighFilter, dateLowFilter,distanceHighFilter,distanceLowFilter)
   loadWorkouts(filteredWorkouts)
   // hide the modal after confirming
   $('#deleteModal').modal('hide')

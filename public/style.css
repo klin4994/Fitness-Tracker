@@ -179,7 +179,6 @@ button {
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #aaa;
-  margin: 10px auto 0px;
   background-color: white;
 }
 
@@ -582,6 +581,10 @@ ul{
 #workout-content{
   margin-top:2rem;
 }
+
+#filter-submit{
+  margin: 10px auto 0px;
+}
 @keyframes toast {
   50% {
     opacity: 1;
@@ -641,9 +644,9 @@ ul{
     }
 
     #filter {
+      display: inline-block;
       margin-right: 3rem;
       margin-bottom: 1rem;
-      max-width: 26em;
     }
 
 }

@@ -99,7 +99,7 @@ app.delete("/api/delete/:id", (req, res) => {
 
 // get workouts based on chosen filter criteria
 // app.get('/api/filter/:type/:searchName/:totalDurationDown/:totalDurationUp/:dateUp/:dateDown', (req, res) => {
-app.get('/api/filter/:type/:searchName/:dateUp/:dateDown', (req, res) => {
+app.get('/api/filter/:type/:searchName/:dateUp/:dateDown/:distanceUp/:distanceDown', (req, res) => {
 
   // console.log(req.params)
   // const typeQuery = { 'exercises.type': { $regex : req.params.type } }
@@ -181,6 +181,10 @@ app.get('/api/filter/:type/:searchName/:dateUp/:dateDown', (req, res) => {
     { 'day': {
       $gte: req.params.dateDown, 
       $lte: req.params.dateUp
+    } },
+    { 'exercises.distance': {
+      $gte: req.params.distanceDown, 
+      $lte: req.params.distanceUp
     } }
   ]
   //   [
