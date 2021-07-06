@@ -1,6 +1,12 @@
 init();
 
 async function init() {
+  // Button to clear all filters
+  $("#clear-all-filters").click((e) => {
+    e.preventDefault();
+    $("input").val('')
+  })
+  // Distance slider
   $("#slider").slider({
     min: 0,
     max: 500,
@@ -17,7 +23,7 @@ $("input.sliderValue").change(function() {
     var $this = $(this);
     $("#slider").slider("values", $this.data("index"), $this.val());
 });
-
+  // Assign new Id to new workout
   if (location.search.split("=")[1] === undefined) {
     const workout = await API.getLastWorkout();
     if (workout) {
