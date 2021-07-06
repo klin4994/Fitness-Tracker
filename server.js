@@ -98,26 +98,110 @@ app.delete("/api/delete/:id", (req, res) => {
 })
 
 // get workouts based on chosen filter criteria
-app.get('/api/filter/:searchName', (req, res) => {
-  console.log(req.params.searchName)
-  dbs.find({$and:[
-    // { 'exercises.type': { $regex : req.params.type } },
+// app.get('/api/filter/:type/:searchName/:totalDurationDown/:totalDurationUp/:dateUp/:dateDown', (req, res) => {
+app.get('/api/filter/:type/:searchName/:dateUp/:dateDown', (req, res) => {
+
+  // console.log(req.params)
+  // const typeQuery = { 'exercises.type': { $regex : req.params.type } }
+  // const nameQuery = { 'exercises.name': { $regex : req.params.searchName, '$options' : 'i' } }
+  // const totalDurationQuery = 
+  //   { 'exercises.duration': {
+  //     $gte: req.params.totalDurationDown, 
+  //     $lte: req.params.totalDurationUp
+  //   } }
+
+  // // Date queries
+  // const dateQuery = { 'day': {
+  //     $gte: req.params.dayDown, 
+  //     $lt: req.params.dayUp
+  //   } }
+  // const dateQueryUpOnly = { 'day': {
+  //   $lt: req.params.dayUp
+  // } }
+  // const dateQueryDownOnly = { 'day': {
+  //   $gte: req.params.dayDown, 
+  // } }
+
+  // // Distance queries
+  // const distanceQuery = { 'exercises.distance': {
+  //     $gte: req.params.distanceDown, 
+  //     $lt: req.params.distanceUp
+  //   } }
+  // const distanceQueryUpOnly = { 'exercises.distance': {
+  //   $lt: req.params.dayUp
+  // } }
+  // const distanceQueryDownOnly = { 'exercises.distance': {
+  //   $gte: req.params.dayDown, 
+  // } }
+
+
+  // // Initiate query array
+  // const queryArray =[];
+  // // Push the relevant query to the array if any value has been provided
+  // if (req.params.type){
+  //   queryArray.push(typeQuery)
+  // }
+  // if (req.params.searchName){
+  //   queryArray.push(nameQuery)
+  // }
+  
+  // // If date range not provided
+  // if (!req.params.dateUp && !req.params.dateDown) {
+  //   return
+  // // if both dates provided
+  // } else if (req.params.dateUp && req.params.dateDown){
+  //   queryArray.push(dateQuery)
+  //   // if only upper date provided
+  // } else if (!req.params.dateDown) {
+  //   queryArray.push(dateQueryUpOnly)
+  //   // if only lower date provided
+  // } else if (!req.params.dateUp) {
+  //   queryArray.push(dateQueryDownOnly)
+  // }
+
+  //   // If both distance values are not provided
+  //   if (!req.params.totalDistanceUp && !req.params.totalDistanceDown) {
+  //     return
+  //   // if both distances provided
+  //   } else if (req.params.totalDistanceUp && req.params.totalDistanceDown){
+  //     queryArray.push(distanceQuery)
+  //     // if only upper distance provided
+  //   } else if (!req.params.totalDistanceDown) {
+  //     queryArray.push(distanceQueryUpOnly)
+  //     // if only lower distance provided
+  //   } else if (!req.params.totalDistanceUp) {
+  //     queryArray.push(distanceQueryDownOnly)
+  //   }
+
+
+
+  dbs.find({$and:[ 
+    { 'exercises.type': { $regex : req.params.type, '$options' : 'i' } },
     { 'exercises.name': { $regex : req.params.searchName, '$options' : 'i' } },
-    // { 'exercises.distance': {
-    //   $gte: req.params.distanceDown, 
-    //   $lt: req.params.distanceUp
-    // } },
-    // { 'exercises.duration': {
-    //   $gte: req.params.durationDown, 
-    //   $lt: req.params.durationUp
-    // } },
-    // { 'day': {
-    //   $gte: req.params.dayDown, 
-    //   $lt: req.params.dayUp
-    // } },
-  ]}).sort({ _id: -1  })
+    { 'day': {
+      $gte: req.params.dateDown, 
+      $lte: req.params.dateUp
+    } }
+  ]
+  //   [
+  //   { 'exercises.type': { $regex : req.params.type } },
+  //   what,
+  //   { 'exercises.distance': {
+  //     $gte: req.params.distanceDown, 
+  //     $lt: req.params.distanceUp
+  //   } },
+  //   { 'exercises.duration': {
+  //     $gte: req.params.totalDurationDown, 
+  //     $lte: req.params.totalDurationUp
+  //   } },
+  //   { 'day': {
+  //     $gte: req.params.dayDown, 
+  //     $lt: req.params.dayUp
+  //   } },
+  // ]
+}).sort({ _id: -1  })
   .then(dbWorkout => {
-    console.log(dbWorkout)
+    console.log("aaa", dbWorkout)
     res.json(dbWorkout)
   })    .catch(err => {
     res.json(err);

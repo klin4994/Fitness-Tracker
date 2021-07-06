@@ -14,10 +14,9 @@ html,
 body {
   max-width:90rem;
   margin: 0 auto;
-}
-
-body {
+  background-color: rgba(238,240,248,255);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  
 }
 
 #logo{
@@ -25,19 +24,20 @@ body {
   white-space:nowrap
 }
 nav {
-  background-color: #f5f3f3;
+  background-color: white;
   color: #000000;
   line-height: 3;
   font-size: 1.2rem;
-  min-height: 3.8em;
+  min-height: 4.3rem;
 }
 
 .nav-background{
-  background-color: #f5f3f3;
+  background-color: white;
   left: 0;
   position:absolute;
   min-width: 100vw;
-  height: 4.6rem;
+  min-height: 4.3rem;
+
 
 }
 
@@ -56,7 +56,7 @@ a:visited {
 
 .current-page {
   color: rgba(226, 12, 12, 0.658);
-  border-bottom: rgba(226, 12, 12, 0.658) solid 3px;
+  border-bottom: rgba(226, 12, 12, 0.658) solid 5px;
 }
 
 header {
@@ -114,12 +114,15 @@ input {
   border-radius: 6px;
   border: 1px solid #aaa;
   width: 100%;
-  padding: 10px;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  padding: 3px;
+}
+
+#filter label * {
+  margin: 0px auto;
 }
 
 .wrapper {
-  background-color: #f2f8ff;
+  background-color: rgba(238,240,248,255);
 }
 
 .card.m-auto,
@@ -176,8 +179,8 @@ button {
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #aaa;
-  padding: 10px;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  margin: 10px auto 0px;
+  background-color: white;
 }
 
 #toast {
@@ -231,16 +234,6 @@ form::after {
   display: none;
 }
 
-button {
-  display: block;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  padding: 10px;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-}
 
 #toast {
   border-radius: 4px;
@@ -292,17 +285,6 @@ form::after {
   display: none;
 }
 
-button {
-  display: block;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  padding: 10px;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-}
-
 #toast {
   border-radius: 4px;
   border-width: 1px;
@@ -340,7 +322,6 @@ button {
   border-radius: 6px;
   border: 1px solid #aaa;
   padding: 10px;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 
 form > button {
@@ -476,7 +457,7 @@ white-space:nowrap
 
 .nav-item{
   margin: 0 0.5em;
-  padding-bottom: 6px;
+  padding-bottom: 4px;
 }
 
 .right{
@@ -492,7 +473,7 @@ ul{
   text-align:right;
 }
 div.wrapper.workout {
-  background-color:rgb(255, 255, 255);
+  background-color: rgba(238,240,248,255);
   height:max-content
 }
 
@@ -554,11 +535,12 @@ div.wrapper.workout {
 }
 
 .jumbotron-workouts {
-  background:linear-gradient(217deg, rgba(226, 12, 12, 0.582), rgba(255, 0, 0, 0.075) 70.71%)
+  background:linear-gradient(to left bottom, #fcadad, #ffe9e9)
+  /* background:linear-gradient(to left bottom, rgba(255, 90, 90, 0.582), rgba(236, 64, 64, 0.075) 70.71%) */
 }
 
 .jumbotron-dashboard {
-  background:linear-gradient(217deg, rgba(12, 183, 226, 0.582), rgba(12, 183, 226, 0.096) 70.71%)
+  background:linear-gradient(to left bottom, rgba(89, 222, 255, 0.582), rgba(12, 183, 226, 0.096) 70.71%)
 }
 
 .jumbotron-add {
@@ -593,7 +575,7 @@ div.wrapper.workout {
 }
 
 ul{
-  margin-right: 1rem;
+  margin-right: 0rem;
   margin-left:auto;
 }
 
@@ -634,11 +616,24 @@ ul{
 @media only screen and (max-width: 989px) {
     .navbar-nav{
         margin: 0 auto;
-        width:150%
+        width:100%
+    }
+    ul{
+      width:100vw;
     }
     li {
-      width: 65%;
-      margin: 0 3em;
+      text-align:center;
+      width:100vw;
+    }
+    li a{
+      text-align:center;
+          position: relative;
+      width: 100%;
+      margin-right:auto;
+    }
+    .nav-item{
+      text-align:center;
+      width:100vw;
     }
     .current-page {
       color: rgba(226, 12, 12, 0.658);

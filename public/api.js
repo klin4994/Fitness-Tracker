@@ -61,8 +61,9 @@ const API = {
     return json;
   },
 
-  async getFilteredWorkouts(searchName) {
-    const res = await fetch(`/api/filter/${searchName}`,{
+  async getFilteredWorkouts(type,searchName,totalDurationHigh, totalDurationLow, dayUp, dayDown) {
+    // const res = await fetch(`/api/filter/${type}/${searchName}/${totalDurationLow}/${totalDurationHigh}/${dayUp}/${dayDown}`,{
+    const res = await fetch(`/api/filter/${type}/${searchName}/${dayUp}/${dayDown}`,{
       method: 'get',
       headers: { "Content-Type": "application/json" }
     })

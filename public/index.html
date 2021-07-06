@@ -11,7 +11,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="style.css" />
   <title>Fitness Tracker</title>
 </head>
@@ -44,16 +47,16 @@
     <div id="navbarCollapse" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
           <li class=" nav-item current-page ">
-            <a class="nav-item" href="/">Latest workout</a>
+            <a href="/">Latest workout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-item" href="/stats.html">Dashboard</a>
+            <a href="/stats.html">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-item" href="/exercise.html">Continue Workout</a>
+            <a href="/exercise.html">Continue Workout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-item" href="/exercise.html">New Workout</a>
+            <a href="/exercise.html">New Workout</a>
           </li>   
       </ul>
     </div>
@@ -69,19 +72,45 @@
     <div class="col-lg-3">
       <!-- date picker -->
       <form id="filter" class="shadow-sm p-9 bg-white rounded card" action="">
+        <label id="exercise-type-label" for="exercise-type">Workout type
+          <input id="exercise-type" name="exercise-type" type="input" placeholder="Exercise name">
+        </label> 
         <label id="exercise-name-label" for="exercise-name">Exercise Name
           <input id="exercise-name" name="exercise-name" type="input" placeholder="Exercise name">
         </label> 
-        <!-- <label id="duration-label" for="duration">Total duration
-          <input id="duration" name="duration" type="input" placeholder="Total duration">
+        <label id="duration-label" for="total-duration-low">Total duration from:
+          <input id="total-duration-low" name="total-duration-low" type="input" placeholder="Total duration from...">
         </label> 
+        <label id="duration-label" for="total-duration-high">Total duration to:
+          <input id="total-duration-high" name="total-duration-high" type="input" placeholder="Total duration to...">
+        </label> 
+        <label id="start-date-label" for="date-start">Distance
+          <input type="range" name="distance" min="1" max="100" value="50">
+        </label>
         <div>Date range:</div>
         <label id="start-date-label" for="date-start">Start
-          <input id="date-picker" name="date-start" type="date">
+          <input id="date-start" name="date-start" type="date">
         </label>  
         <label id="finish-date-label" for="date-finish">Finish
-          <input id="date-picker" name="date-finish" type="date">
-        </label>   -->
+          <input id="date-finish" name="date-finish" type="date">
+        </label> 
+        <!-- Slider -->
+        <div id="slider"></div>
+        <!-- <div class="product-list-filter " id="product-list-filter-wrapper" data-max-price="4612" data-min-price="139">
+          <div id="filter-slider-range" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span></div>
+          <div class="row">
+          <div class="col-4 no-padding-left">
+          <input type="number" class="filter-input-slider element-hidden" id="filter-min-price" value="139">
+          <input aria-label="Input Minimum Price" type="text" class="filter-input-slider" id="filter-min-price-show" value="139" placeholder="$">
+          </div>
+          <div class="col-4 text-center filter-input-to">to</div>
+          <div class="col-4 no-padding-right">
+          <input type="number" class="filter-input-slider element-hidden" id="filter-max-price" value="4612">
+          <input aria-label="Input Maximum Price" type="text" class="filter-input-slider" id="filter-max-price-show" value="4612" placeholder="$">
+          </div>
+          </div>
+          </div> -->
+        <!-- submit button -->
         <p><button id="filter-submit" type="submit">Submit</button></p>
       </form>
     </div>

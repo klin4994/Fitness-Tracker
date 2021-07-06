@@ -1,6 +1,9 @@
 init();
 
 async function init() {
+  $( function() {
+    $( "#slider" ).slider();
+  } );
   if (location.search.split("=")[1] === undefined) {
     const workout = await API.getLastWorkout();
     if (workout) {

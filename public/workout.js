@@ -7,10 +7,23 @@ $( document ).ready(function() {
   // Function to load filtered results
   async  function loadFiltered(e) {
   e.preventDefault()
-  const nameFilter = $("#exercise-name")[0].value
+  const typeFilter = $("#exercise-type")[0].value;
+  const nameFilter = $("#exercise-name")[0].value;
+  const totalDurationHighFilter = $("#total-duration-high")[0].value;
+  const totalDurationLowFilter = $("#total-duration-low")[0].value
+  const dateHighFilter = $("#date-finish")[0].value;
+  const dateLowFilter = $("#date-start")[0].value;
   $( ".rest-workout-container" ).remove()
-  console.log(nameFilter)
-  const filteredWorkouts = await API.getFilteredWorkouts(nameFilter)
+  console.log(dateHighFilter.toLocaleString('en-US', {
+    weekday: 'short', // long, short, narrow
+    day: 'numeric', // numeric, 2-digit
+    year: 'numeric', // numeric, 2-digit
+    month: 'long', // numeric, 2-digit, long, short, narrow
+    hour: 'numeric', // numeric, 2-digit
+    minute: 'numeric', // numeric, 2-digit
+    second: 'numeric', // numeric, 2-digit
+}));
+  const filteredWorkouts = await API.getFilteredWorkouts(typeFilter,nameFilter,"", "", dateHighFilter, dateLowFilter)
   loadWorkouts(filteredWorkouts)
   // hide the modal after confirming
   $('#deleteModal').modal('hide')
