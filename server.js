@@ -99,108 +99,111 @@ app.delete("/api/delete/:id", (req, res) => {
 
 // get workouts based on chosen filter criteria
 // app.get('/api/filter/:type/:searchName/:totalDurationDown/:totalDurationUp/:dateUp/:dateDown', (req, res) => {
-app.get('/api/filter/:type/:searchName/:dateUp/:dateDown/:distanceUp/:distanceDown', (req, res) => {
-
-  // console.log(req.params)
-  // const typeQuery = { 'exercises.type': { $regex : req.params.type } }
-  // const nameQuery = { 'exercises.name': { $regex : req.params.searchName, '$options' : 'i' } }
+app.get('/api/filter/:type/:searchName/:dateUp/:dateDown/:distanceUp/:distanceDown', ({params}, res) => {
+  const typeQuery = { 'exercises.type': { $regex : params.type } }
+  const nameQuery = { 'exercises.name': { $regex : params.searchName, '$options' : 'i' } }
   // const totalDurationQuery = 
   //   { 'exercises.duration': {
-  //     $gte: req.params.totalDurationDown, 
-  //     $lte: req.params.totalDurationUp
+  //     $gte: params.totalDurationDown, 
+  //     $lte: params.totalDurationUp
   //   } }
 
-  // // Date queries
-  // const dateQuery = { 'day': {
-  //     $gte: req.params.dayDown, 
-  //     $lt: req.params.dayUp
-  //   } }
-  // const dateQueryUpOnly = { 'day': {
-  //   $lt: req.params.dayUp
-  // } }
-  // const dateQueryDownOnly = { 'day': {
-  //   $gte: req.params.dayDown, 
-  // } }
+  // Date queries
+  const dateQuery = { 'day': {
+      $gte: params.dateDown, 
+      $lt: params.dateUp
+    } }
+  const dateQueryUpOnly = { 'day': {
+    $lt: params.dateUp
+  } }
+  const dateQueryDownOnly = { 'day': {
+    $gte: params.dateDown, 
+  } }
 
-  // // Distance queries
-  // const distanceQuery = { 'exercises.distance': {
-  //     $gte: req.params.distanceDown, 
-  //     $lt: req.params.distanceUp
-  //   } }
-  // const distanceQueryUpOnly = { 'exercises.distance': {
-  //   $lt: req.params.dayUp
-  // } }
-  // const distanceQueryDownOnly = { 'exercises.distance': {
-  //   $gte: req.params.dayDown, 
-  // } }
+  // Distance queries
+  const distanceQuery = { 'exercises.distance': {
+      $gte: params.distanceDown, 
+      $lt: params.distanceUp
+    } }
+  const distanceQueryUpOnly = { 'exercises.distance': {
+    $lt: params.distanceUp
+  } }
+  const distanceQueryDownOnly = { 'exercises.distance': {
+    $gte: params.distanceDown, 
+  } }
 
 
   // // Initiate query array
-  // const queryArray =[];
-  // // Push the relevant query to the array if any value has been provided
-  // if (req.params.type){
-  //   queryArray.push(typeQuery)
-  // }
-  // if (req.params.searchName){
-  //   queryArray.push(nameQuery)
-  // }
+  const queryArray =[];
+
+  // Push the relevant query to the array if any value has been provided
+  if (params.type !== "null"){
+    queryArray.push(typeQuery)
+  }
+  if (params.searchName !== "null"){
+    queryArray.push(nameQuery)
+  }
   
-  // // If date range not provided
-  // if (!req.params.dateUp && !req.params.dateDown) {
-  //   return
-  // // if both dates provided
-  // } else if (req.params.dateUp && req.params.dateDown){
-  //   queryArray.push(dateQuery)
-  //   // if only upper date provided
-  // } else if (!req.params.dateDown) {
-  //   queryArray.push(dateQueryUpOnly)
-  //   // if only lower date provided
-  // } else if (!req.params.dateUp) {
-  //   queryArray.push(dateQueryDownOnly)
-  // }
+  // If date range not provided
+  if (params.dateUp == "null" && params.dateDown == "null") {
+    console.log("no dates to both")
+  // if both dates provided
+  } else if (params.dateUp !== "null" && params.dateDown !== "null"){
+    queryArray.push(dateQuery)
+    // if only upper date provided
+  } else if (params.dateDown == "null") {
+    queryArray.push(dateQueryUpOnly)
+    // if only lower date provided
+  } else if (!params.dateUp == "null")  {
+    queryArray.push(dateQueryDownOnly)
+  }
 
-  //   // If both distance values are not provided
-  //   if (!req.params.totalDistanceUp && !req.params.totalDistanceDown) {
-  //     return
-  //   // if both distances provided
-  //   } else if (req.params.totalDistanceUp && req.params.totalDistanceDown){
-  //     queryArray.push(distanceQuery)
-  //     // if only upper distance provided
-  //   } else if (!req.params.totalDistanceDown) {
-  //     queryArray.push(distanceQueryUpOnly)
-  //     // if only lower distance provided
-  //   } else if (!req.params.totalDistanceUp) {
-  //     queryArray.push(distanceQueryDownOnly)
-  //   }
+  // If both distance values are not provided
+  if (params.distanceUp == "null" && params.distanceDown == "null") {
+    return
+  // if both distances provided
+  } else if (params.distanceUp !== "null" && params.distanceDown !== "null"){
+    queryArray.push(distanceQuery)
+    // if only upper distance provided
+  } else if (params.distanceDown == "null") {
+    queryArray.push(distanceQueryUpOnly)
+    // if only lower distance provided
+  } else if (params.distanceUp == "null") {
+    queryArray.push(distanceQueryDownOnly)
+  }
+
+  // Compile all queries prior making request to the db
+  console.log("yo",queryArray)
 
 
+  dbs.find({$and:queryArray
+  //   [ 
+  //   { 'exercises.type': { $regex : params.type, '$options' : 'i' } },
+  //   { 'exercises.name': { $regex : params.searchName, '$options' : 'i' } },
+  //   { 'day': {
+  //     $gte: params.dateDown, 
+  //     $lte: params.dateUp
+  //   } },
+  //   { 'exercises.distance': {
+  //     $gte: params.distanceDown, 
+  //     $lte: params.distanceUp
+  //   } }
+  // ]
 
-  dbs.find({$and:[ 
-    { 'exercises.type': { $regex : req.params.type, '$options' : 'i' } },
-    { 'exercises.name': { $regex : req.params.searchName, '$options' : 'i' } },
-    { 'day': {
-      $gte: req.params.dateDown, 
-      $lte: req.params.dateUp
-    } },
-    { 'exercises.distance': {
-      $gte: req.params.distanceDown, 
-      $lte: req.params.distanceUp
-    } }
-  ]
   //   [
-  //   { 'exercises.type': { $regex : req.params.type } },
+  //   { 'exercises.type': { $regex : params.type } },
   //   what,
   //   { 'exercises.distance': {
-  //     $gte: req.params.distanceDown, 
-  //     $lt: req.params.distanceUp
+  //     $gte: params.distanceDown, 
+  //     $lt: params.distanceUp
   //   } },
   //   { 'exercises.duration': {
-  //     $gte: req.params.totalDurationDown, 
-  //     $lte: req.params.totalDurationUp
+  //     $gte: params.totalDurationDown, 
+  //     $lte: params.totalDurationUp
   //   } },
   //   { 'day': {
-  //     $gte: req.params.dayDown, 
-  //     $lt: req.params.dayUp
+  //     $gte: params.dayDown, 
+  //     $lt: params.dayUp
   //   } },
   // ]
 }).sort({ _id: -1  })

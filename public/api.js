@@ -62,6 +62,7 @@ const API = {
   },
 
   async getFilteredWorkouts(type,searchName,totalDurationHigh, totalDurationLow, dayUp, dayDown,distanceUp, distanceDown) {
+    console.log("api", searchName)
     // const res = await fetch(`/api/filter/${type}/${searchName}/${totalDurationLow}/${totalDurationHigh}/${dayUp}/${dayDown}`,{
     const res = await fetch(`/api/filter/${type}/${searchName}/${dayUp}/${dayDown}/${distanceUp}/${distanceDown}`,{
       method: 'get',

@@ -645,8 +645,8 @@ ul{
 
     #filter {
       display: inline-block;
-      margin-right: 3rem;
-      margin-bottom: 1rem;
+      margin: 2rem 10vw;
+      width:80vw;
     }
 
 }
