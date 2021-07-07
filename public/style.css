@@ -6,6 +6,11 @@
   padding: 0;
 }
 
+@font-face{
+  font-family: "Poppin";
+  src: url("fonts/font-name.ttf") format("truetype");
+}
+
 html,
 .wrapper {
   height: 100%;
@@ -15,7 +20,7 @@ body {
   max-width:90rem;
   margin: 0 auto;
   background-color: rgba(238,240,248,255);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Poppins, Helvetica, "sans-serif";
   
 }
 
@@ -519,9 +524,7 @@ div.wrapper.workout {
   color:rgb(253, 117, 27);
   position:relative;
 }
-.workout-data {
-  margin-left: 150px;
-}
+
 
 .text-center{
   text-align:center;
@@ -608,10 +611,7 @@ ul{
   }
   
   .delete-btn {
-    float: right;
-    padding:3px;
-    margin:0 5px 5px 0;
-  }
+
 
 }
 
