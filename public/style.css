@@ -498,7 +498,7 @@ div.wrapper.workout {
 
 .data {
   position: absolute;
-  left:10rem
+  left: 13rem
 }
 
 
@@ -509,16 +509,14 @@ div.wrapper.workout {
 
 .card-header{
   font-size:1.3rem;
-  padding: 1px 10px;
-  color:rgb(255, 255, 255);
-  background-color:rgba(255, 94, 0, 0.795);
+  padding: 5px 10px;
+  /* color:rgb(65, 65, 65); */
+  color:white;
+  /* background:linear-gradient(to top, #ff999977, #ffd0d0) */
+  background:linear-gradient(to top, #3cc268d2, #39b46293)
   /* background-color: rgba(226, 12, 12, 0.658) */
 }
 
-.card-header1 {
-  font-size:1.5rem;
-  color:rgb(253, 117, 27)
-}
 
 .card-header-last {
   font-size:1.5rem;
@@ -538,7 +536,8 @@ div.wrapper.workout {
 }
 
 .jumbotron-workouts {
-  background:linear-gradient(to left bottom, #fcadad, #ffe9e9)
+  /* background:linear-gradient(to left bottom, #fc1010a6, #ffffff) */
+  background:linear-gradient(to bottom, #d9fce5d2, #87ffaf8e)
   /* background:linear-gradient(to left bottom, rgba(255, 90, 90, 0.582), rgba(236, 64, 64, 0.075) 70.71%) */
 }
 
@@ -559,9 +558,10 @@ div.wrapper.workout {
   position:absolute;
   right:0;
   width:fit-content;
-  padding:1px 4px 1px 4px;
+  padding:5px 4px 5px 4px;
   font-size: 2rem;
-  color:rgb(209, 58, 58);
+  /* color:rgba(196, 12, 12, 0.473); */
+  color:rgba(255, 255, 255, 0.877);
   border:none;
   border-radius:5px;
   background-color: transparent;
@@ -592,13 +592,38 @@ ul{
   margin: 10px auto 0px;
 }
 
-#resistanceTitleRow .jumbotron {
+
+.workoutJumbotron  {
   text-align:center;
   padding:0.2rem
 }
-#cardioTitleRow .jumbotron {
-  text-align:center;
-  padding:0.2rem
+.resistanceTitleText,
+.cardioTitleText,
+.summaryTitleText {
+  margin:0 0 7px 0;
+  font-size: 1.3rem;;
+  padding: 0.2rem;
+}
+
+.summaryTitleText {
+  /* color: #e60909d2; */
+  color: #008f30d2;
+  background-color: white;
+}
+
+.resistanceTitleText,
+.cardioTitleText{
+  background-color: rgb(245, 245, 245);
+}
+.exercise-summary-text{
+  font-size: 1.2rem;
+  padding-left: 2rem;
+}
+.workout-summary-text{
+  /* color: #e60909d2; */
+  color: #008f30d2;
+  font-size: 1.2rem;
+  padding-left: 2rem;
 }
 @keyframes toast {
   50% {
@@ -616,7 +641,6 @@ ul{
    display: inline;
   }
 }
-
 @media only screen and (max-width: 767px) {
   .card-header {
     text-align: center;
@@ -656,7 +680,5 @@ ul{
       margin: 2rem 10vw;
       width:80vw;
     }
-
-
 }
 

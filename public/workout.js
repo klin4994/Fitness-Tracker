@@ -159,22 +159,22 @@ function renderLastWorkout(summary, id, lastWorkout) {
   };
   Object.keys(summary).forEach(key => {
     const p = document.createElement("p");
-    const strong = document.createElement("strong");
+    const span = document.createElement("span");
     
-    strong.textContent = workoutKeyMap[key];
+    span.textContent = workoutKeyMap[key];
     // workout data (e.g 50 mins, 12 reps...)
     const textNode = document.createElement('span');
     textNode.textContent = `${summary[key]}`; 
 
-    p.appendChild(strong);
+    p.appendChild(span);
     p.appendChild(textNode);
-    strong.setAttribute('class','card-header-last');
+    span.setAttribute('class','card-header-last');
     container.appendChild(p);
   });
 }
 
 function renderRestWorkouts(summary, id, lastWorkout,exercises) {
-  console.log(summary);
+
   const container = document.getElementById(`${id}`);
 
   // create row for the card for grid arrangement
@@ -183,13 +183,24 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
   // button
   const Button = document.createElement('div')
   $(row).attr("class", "row g-0")
-  // column (middle) to display workout data except date
+  // column to display workout data except date
   const workoutSection = document.createElement('div')
-  $(workoutSection).attr("class", "col-md-9")
+  $(workoutSection).attr("class", "col-md-12")
+
   // Row inside the workoutSection for displaying workout information
   const workoutRow = document.createElement('div')
   $(workoutRow).attr("class", "row g-0")
     .appendTo(workoutSection)
+  // Jumbotron at the top to show 'Workout Summary' as card title
+  const summaryJumbotronCol = document.createElement('div')
+  $(summaryJumbotronCol).attr("class", "col-12")
+    .appendTo(workoutRow)
+
+    const summaryJumbotron = document.createElement('div')
+  $(summaryJumbotron).attr({class:"jumbotron shadow-sm workoutJumbotron summaryTitleText"})
+    .appendTo(summaryJumbotronCol)
+    .text('Workout Summary')
+    
   // Column to display workout data
   const workoutData = document.createElement('div')
   $(workoutData).attr("class", "col-12")
@@ -219,9 +230,9 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
       $(resistanceTitleCol).attr({class:"col-12", id:"resistanceTitleCol"})
         .appendTo(resistanceTitleRow)
       
-      $(resistanceTitleText).attr({class:"jumbotron shadow-sm", id:"resistanceTitleText"})
+      $(resistanceTitleText).attr({class:"jumbotron shadow-sm workoutJumbotron resistanceTitleText"})
       .appendTo(resistanceTitleCol)
-      .text("Resistance Exercises")
+      .text("Resistance")
     }
   })
 
@@ -240,9 +251,9 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
       $(cardioTitleCol).attr({class:"col-12", id:"cardioTitleCol"})
         .appendTo(cardioTitleRow)
       
-      $(cardioTitleText).attr({class:"jumbotron shadow-sm", id:"cardioTitleText"})
+      $(cardioTitleText).attr({class:"jumbotron shadow-sm workoutJumbotron cardioTitleText"})
       .appendTo(cardioTitleCol)
-      .text("Cardio Exercises")
+      .text("Cardio")
     }
   })
 
@@ -285,9 +296,9 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
   Object.keys(summary).forEach(key => {
     const p = document.createElement("span");
 
-    const strong = document.createElement("strong");
+    const span = document.createElement("span");
     
-    strong.textContent = workoutKeyMap[key];
+    span.textContent = workoutKeyMap[key];
     // workout data (e.g 50 mins, 12 reps...)
     const textNode = document.createElement('span');
     textNode.textContent = `${summary[key]}`;
@@ -298,9 +309,9 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
     p.appendChild(textNode);
     if(key === 'date' && !lastWorkout){
       p.setAttribute('class','card-header text-center');
-      strong.setAttribute('class','card-header1')
+      span.setAttribute('class','card-header1')
       $(row).append(
-        `<div class="col-md-3 card-header">
+        `<div class=" card-header">
         <span>${summary[key]}</span>
         </div>`
       );
@@ -308,9 +319,9 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
       $(workoutSection).appendTo(row)
       console.log(workoutKeyMap[key], key, summary[key])
       $(workoutDataRow).append(
-        `<div class=" col-sm-6 prev-workout-content">
+        `<div class=" col-sm-6 workout-summary-text prev-workout-content ">
           <span>
-            <strong>${workoutKeyMap[key]}</strong>
+            <span>${workoutKeyMap[key]}</span>
             <span class="data">${summary[key]}</span>
           </span>
         </div>`)
@@ -363,7 +374,7 @@ function cardioExercisesRender(workoutSection, exercise) {
     
     if (stat !== "type") {
     const p = document.createElement("p");
-    const strong = document.createElement("strong");
+    const span = document.createElement("span");
     
     const capitalized = stat.charAt(0).toUpperCase();
     const rest = stat.slice(1)
@@ -371,19 +382,19 @@ function cardioExercisesRender(workoutSection, exercise) {
     // add units where appropriate
     switch (stat) {
       case "distance":
-        strong.textContent = capitalized + rest + " (km):"
+        span.textContent = capitalized + rest + " (km):"
         break;
       case "duration":
-        strong.textContent = capitalized + rest + " (min):"
+        span.textContent = capitalized + rest + " (min):"
         break;
         default:
-        strong.textContent = capitalized + rest
+        span.textContent = capitalized + rest
     }
     const textNode = document.createElement('span');
     textNode.textContent = exercise[stat]; 
-    $(strong).attr("class", "capitalize")
-    $(p).append(strong)
-      .attr("class","prev-workout-content")
+    $(span).attr("class", "capitalize")
+    $(p).append(span)
+      .attr("class","prev-workout-content exercise-summary-text")
       .append(textNode);
     textNode.setAttribute('class', 'data');
     $(dataCol).append(p).appendTo(dataRow)
@@ -420,7 +431,7 @@ function cardioExercisesRender(workoutSection, exercise) {
     
     if (stat !== "type") {
     const p = document.createElement("p");
-    const strong = document.createElement("strong");
+    const span = document.createElement("span");
     
     const capitalized = stat.charAt(0).toUpperCase();
     const rest = stat.slice(1)
@@ -428,21 +439,21 @@ function cardioExercisesRender(workoutSection, exercise) {
     // add units where appropriate
     switch (stat) {
       case "weight":
-        strong.textContent = capitalized + rest + " (kg):"
+        span.textContent = capitalized + rest + " (kg):"
         break;
       case "duration":
-        strong.textContent = capitalized + rest + " (min):"
+        span.textContent = capitalized + rest + " (min):"
         break;
         default:
-        strong.textContent = capitalized + rest
+        span.textContent = capitalized + rest
     }
 
     const textNode = document.createElement('span');
     textNode.textContent = exercise[stat]; 
 
-    $(strong).attr("class", "capitalize")
-    $(p).append(strong)
-      .attr("class","prev-workout-content")
+    $(span).attr("class", "capitalize")
+    $(p).append(span)
+      .attr("class","prev-workout-content exercise-summary-text ")
       .append(textNode);
     textNode.setAttribute('class', 'data');
     $(dataCol).append(p).appendTo(dataRow)
@@ -455,11 +466,11 @@ function cardioExercisesRender(workoutSection, exercise) {
 function renderNoWorkoutText() {
   const container = document.querySelector(".workout-stats");
   const p = document.createElement("p");
-  const strong = document.createElement("strong");
+  const span = document.createElement("span");
   
-  strong.textContent = "You have not created a workout yet!"
+  span.textContent = "You have not created a workout yet!"
 
-  p.appendChild(strong);
+  p.appendChild(span);
   container.appendChild(p);
   
 }
