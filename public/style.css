@@ -540,7 +540,7 @@ div.wrapper.workout {
 
 .jumbotron-workouts {
   /* background:linear-gradient(to left bottom, #fc1010a6, #ffffff) */
-  background:linear-gradient(to bottom, #c0f7d3d2, #6cd6908e)
+  background:linear-gradient(to bottom, #cefddfd2, #8ee9ac8e)
   /* background:linear-gradient(to left bottom, rgba(255, 90, 90, 0.582), rgba(236, 64, 64, 0.075) 70.71%) */
 }
 
@@ -577,8 +577,7 @@ div.wrapper.workout {
 
 
 #filter {
-  margin-left: 3rem;
-  margin-bottom: 1rem;
+  margin: 0 auto 0 3rem;
   padding:1.3rem;
 }
 
@@ -591,11 +590,17 @@ ul{
   margin-top:2rem;
 }
 
-#filter-submit{
+#filter-submit button{
   margin: auto;
-  width:fit-content
+  width:9rem;
+  border:1px solid rgb(104, 164, 253);
+  color: rgb(104, 164, 253);
 }
 
+#filter-submit button:hover{
+  background-color: rgb(104, 164, 253);
+  color: white;
+}
 
 .bulk-stat-row {
   margin-bottom: 1rem;
@@ -643,8 +648,8 @@ hr {
 }
 
 #clear-all-filters button{
+  width:9rem;
   margin: auto;
-  width:fit-content;
   color: rgb(253, 98, 98);
   border:rgb(253, 98, 98) solid 1px;
 }
@@ -654,6 +659,8 @@ hr {
   background-color: rgb(253, 98, 98); 
   color: white;;
 }
+
+
 
 .sliderValue {
   width:3rem;
@@ -724,10 +731,12 @@ hr {
 }
 
 @media only screen and (max-width: 991px) {
-
+  #workout-content{
+    margin-top:0;
+  }
   #filter {
     display: inline-block;
-    margin: 2rem 10vw;
+    margin: 0 10vw;
     width:80vw;
   }
 }
