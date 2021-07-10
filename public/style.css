@@ -481,7 +481,7 @@ ul{
 }
 
 div.wrapper.workout {
-  background-color: rgba(238,240,248,255);
+  /* background-color: rgba(238,240,248,255); */
   height:max-content;
   margin: auto;
 }
@@ -581,6 +581,8 @@ div.wrapper.workout {
 #filter {
   margin: 0 auto 0 3rem;
   padding:1.3rem;
+  position: sticky;
+  top: 0px;
 }
 
 ul{
