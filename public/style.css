@@ -479,9 +479,11 @@ ul{
 .navbar-collapse{
   text-align:right;
 }
+
 div.wrapper.workout {
-  /* background-color: rgba(238,240,248,255); */
-  height:max-content
+  background-color: rgba(238,240,248,255);
+  height:max-content;
+  margin: auto;
 }
 
 .rest-workout-container {
@@ -516,7 +518,7 @@ div.wrapper.workout {
   /* color:rgb(65, 65, 65); */
   color:white;
   /* background:linear-gradient(to top, #ff999977, #ffd0d0) */
-  background:linear-gradient(to top, #5fca83d2, #3cc969d0)
+  background:linear-gradient(to top, #5fca83d2, #53dd7fd0)
   /* background-color: rgba(226, 12, 12, 0.658) */
 }
 
@@ -667,9 +669,13 @@ hr {
   margin: 0.3rem auto
 }
 
+#slider {
+  margin-bottom: 0.3rem !important
+}
+
 #exercise-name-label,
-#distance-finish  input,
-#distance-start  input{
+#distance-finish,
+#distance-start  {
   margin: 0.3rem auto
 }
 
@@ -738,5 +744,8 @@ hr {
     display: inline-block;
     margin: 0 10vw;
     width:80vw;
+  }
+  div.wrapper.workout {
+    margin: 0.5rem auto;
   }
 }
