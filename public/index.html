@@ -70,8 +70,8 @@
   </div>
 
   
-  <div id="workout-content" class="row g-0">
-    <div class="col-md-12 col-lg-3">
+  <div id="workout-content" class="row g-3">
+    <div class="col-md-12 col-lg-4">
       <!-- date picker -->
       <form id="filter" class="shadow-sm p-9 bg-white rounded card">
         <div class="row">
@@ -87,16 +87,12 @@
         <label id="exercise-name-label" for="exercise-name" class="col-sm-6 col-lg-12">Exercise Name:
           <input id="exercise-name" name="exercise-name" type="input" placeholder="Exercise name">
         </label> 
-        <!-- <label id="duration-label" for="total-duration-low">Total duration from:
-          <input id="total-duration-low" name="total-duration-low" type="input" placeholder="Total duration from...">
-        </label> 
-        <label id="duration-label" for="total-duration-high">Total duration to:
-          <input id="total-duration-high" name="total-duration-high" type="input" placeholder="Total duration to...">
-        </label>  -->
 
         <!-- Date range picker -->
-        <div class="col-12">Date range:</div>
+
         <label id="start-date-label" for="date-start" class="col-sm-6 col-lg-12">
+          Date range:
+          <br>
           Start date
           <input id="date-start" name="date-start" type="date">
         </label>  
@@ -104,36 +100,21 @@
           <input id="date-finish" name="date-finish" type="date">
         </label> 
         <!-- Distance slider -->
-        <label id="start-date-label" for="date-start" class="col-sm-6 col-lg-12">Distance (km)
+        <label id="start-date-label" for="date-start" class="col-md-6 col-lg-12">Distance (km)
           <div class="row g-0">
             <div id="slider" class="col-12"></div>
-            <div class="col-6">
-              <input type="text" id="distance-start" class="sliderValue" data-index="0" value="30" />
+            <div class="col-6" >
+              <input type="text"  id="distance-start" class="sliderValue" data-index="0" value="30" />
             </div>
-            <div class="col-6">
-              <input type="text" id="distance-finish" class="sliderValue" data-index="1" value="70" />
+            <div class="col-6" >
+              <input type="text"  id="distance-finish" class="sliderValue" data-index="1" value="70" />
             </div>
           </div>
         </label>
 
-
-        <!-- <div class="product-list-filter " id="product-list-filter-wrapper" data-max-price="4612" data-min-price="139">
-          <div id="filter-slider-range" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span></div>
-          <div class="row">
-          <div class="col-4 no-padding-left">
-          <input type="number" class="filter-input-slider element-hidden" id="filter-min-price" value="139">
-          <input aria-label="Input Minimum Price" type="text" class="filter-input-slider" id="filter-min-price-show" value="139" placeholder="$">
-          </div>
-          <div class="col-4 text-center filter-input-to">to</div>
-          <div class="col-4 no-padding-right">
-          <input type="number" class="filter-input-slider element-hidden" id="filter-max-price" value="4612">
-          <input aria-label="Input Maximum Price" type="text" class="filter-input-slider" id="filter-max-price-show" value="4612" placeholder="$">
-          </div>
-          </div>
-          </div> -->
         <!-- submit button -->
-        <div class="col-7">
-          <button id="clear-all-filters" >Clear all filters</button>
+        <div class="col-7" id="clear-all-filters">
+          <button >Clear all filters</button>
         </div>
         <div class="col-5">
           <p><button id="filter-submit" type="submit">Search</button></p>

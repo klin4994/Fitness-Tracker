@@ -121,6 +121,10 @@ input {
   padding: 3px;
 }
 
+input :focus {
+  box-shadow: green;
+}
+
 #filter label * {
   margin: 0px auto;
 }
@@ -635,15 +639,35 @@ hr {
   color: #008f30d2;
   font-size: 1.2rem;
   padding-left: 2rem;
+  z-index: 1;
 }
 
-#clear-all-filters {
+#clear-all-filters button{
   margin: auto;
-  width:fit-content
+  width:fit-content;
+  color: rgb(253, 98, 98);
+  border:rgb(253, 98, 98) solid 1px;
+}
+
+#clear-all-filters button:hover {
+  margin: auto;
+  background-color: rgb(253, 98, 98); 
+  color: white;;
 }
 
 .sliderValue {
   width:3rem;
+  margin: 0.3rem auto
+}
+
+#exercise-name-label,
+#distance-finish  input,
+#distance-start  input{
+  margin: 0.3rem auto
+}
+
+#start-date-label,
+#finish-date-label {
   
 }
 
