@@ -513,7 +513,7 @@ div.wrapper.workout {
   /* color:rgb(65, 65, 65); */
   color:white;
   /* background:linear-gradient(to top, #ff999977, #ffd0d0) */
-  background:linear-gradient(to top, #3cc268d2, #39b46293)
+  background:linear-gradient(to top, #5fca83d2, #3cc969d0)
   /* background-color: rgba(226, 12, 12, 0.658) */
 }
 
@@ -537,7 +537,7 @@ div.wrapper.workout {
 
 .jumbotron-workouts {
   /* background:linear-gradient(to left bottom, #fc1010a6, #ffffff) */
-  background:linear-gradient(to bottom, #d9fce5d2, #87ffaf8e)
+  background:linear-gradient(to bottom, #c0f7d3d2, #6cd6908e)
   /* background:linear-gradient(to left bottom, rgba(255, 90, 90, 0.582), rgba(236, 64, 64, 0.075) 70.71%) */
 }
 
@@ -569,7 +569,7 @@ div.wrapper.workout {
 }
 .delete-btn:hover {
   cursor: pointer;
-  color:white;
+  color:rgb(240, 106, 106);
 }
 
 
