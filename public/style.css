@@ -81,9 +81,9 @@ select {
   border-radius: 6px;
   border: 1px solid #aaa;
   width: 100%;
-  padding: 10px;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
-    linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  padding: 3px;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    /* linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%); */
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
@@ -97,13 +97,12 @@ select:hover {
   border-color: #888;
 }
 
-select:focus {
+/* select:focus {
   border-color: #aaa;
-  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.7);
   color: #222;
   outline: none;
-}
+} */
 
 select option {
   font-weight: normal;
@@ -509,7 +508,7 @@ div.wrapper.workout {
 
 .card-header{
   font-size:1.3rem;
-  padding: 5px 10px;
+  padding: 5px 2rem;
   /* color:rgb(65, 65, 65); */
   color:white;
   /* background:linear-gradient(to top, #ff999977, #ffd0d0) */
@@ -576,7 +575,7 @@ div.wrapper.workout {
 #filter {
   margin-left: 3rem;
   margin-bottom: 1rem;
-  padding:1rem;
+  padding:1.3rem;
 }
 
 ul{
@@ -589,22 +588,34 @@ ul{
 }
 
 #filter-submit{
-  margin: 10px auto 0px;
+  margin: auto;
+  width:fit-content
 }
 
 
-.workoutJumbotron  {
-  text-align:center;
-  padding:0.2rem
+.bulk-stat-row {
+  margin-bottom: 1rem;
 }
 .resistanceTitleText,
 .cardioTitleText,
 .summaryTitleText {
-  margin:0 0 7px 0;
   font-size: 1.3rem;;
   padding: 0.2rem;
 }
 
+.workoutJumbotron  {
+  margin:0 0 1rem 0;
+  text-align:center;
+  padding:0.2rem
+}
+
+.resistanceTitleText,
+.cardioTitleText{
+  margin:0 0 0px 0;
+}
+hr {
+  color: rgb(177, 177, 177)
+}
 .summaryTitleText {
   /* color: #e60909d2; */
   color: #008f30d2;
@@ -625,6 +636,17 @@ ul{
   font-size: 1.2rem;
   padding-left: 2rem;
 }
+
+#clear-all-filters {
+  margin: auto;
+  width:fit-content
+}
+
+.sliderValue {
+  width:3rem;
+  
+}
+
 @keyframes toast {
   50% {
     opacity: 1;
@@ -675,10 +697,13 @@ ul{
       border-bottom: none;
     }
 
-    #filter {
-      display: inline-block;
-      margin: 2rem 10vw;
-      width:80vw;
-    }
 }
 
+@media only screen and (max-width: 991px) {
+
+  #filter {
+    display: inline-block;
+    margin: 2rem 10vw;
+    width:80vw;
+  }
+}

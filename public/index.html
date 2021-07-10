@@ -70,20 +70,21 @@
   </div>
 
   
-  <div id="workout-content" class="row">
+  <div id="workout-content" class="row g-0">
     <div class="col-md-12 col-lg-3">
       <!-- date picker -->
-      <form id="filter" class="shadow-sm p-9 bg-white rounded card" action="">
-        <h2>Filters</h2>
-        <button id="clear-all-filters">Clear all filters</button>
-        <label id="exercise-type-label" for="exercise-type">Workout type
+      <form id="filter" class="shadow-sm p-9 bg-white rounded card">
+        <div class="row">
+        <h2 class="col-12">Filters - Workouts</h2>
+
+        <label id="exercise-type-label" for="exercise-type" class="col-sm-6 col-lg-12">Workout type:
           <!-- <input id="exercise-type" name="exercise-type" type="input" placeholder="Exercise name"> -->
           <select name="exercise-type" id="exercise-type">
             <option value="resistance">Resistance</option>
             <option value="cardio">Cardio</option>
           </select>
         </label> 
-        <label id="exercise-name-label" for="exercise-name">Exercise Name
+        <label id="exercise-name-label" for="exercise-name" class="col-sm-6 col-lg-12">Exercise Name:
           <input id="exercise-name" name="exercise-name" type="input" placeholder="Exercise name">
         </label> 
         <!-- <label id="duration-label" for="total-duration-low">Total duration from:
@@ -94,18 +95,25 @@
         </label>  -->
 
         <!-- Date range picker -->
-        <div>Date range:</div>
-        <label id="start-date-label" for="date-start">Start
+        <div class="col-12">Date range:</div>
+        <label id="start-date-label" for="date-start" class="col-sm-6 col-lg-12">
+          Start date
           <input id="date-start" name="date-start" type="date">
         </label>  
-        <label id="finish-date-label" for="date-finish">Finish
+        <label id="finish-date-label" for="date-finish" class="col-sm-6 col-lg-12">End date
           <input id="date-finish" name="date-finish" type="date">
         </label> 
         <!-- Distance slider -->
-        <label id="start-date-label" for="date-start">Distance (km)
-        <div id="slider"></div>
-        <input type="text" id="distance-start" class="sliderValue" data-index="0" value="10" />
-        <input type="text" id="distance-finish" class="sliderValue" data-index="1" value="90" />
+        <label id="start-date-label" for="date-start" class="col-sm-6 col-lg-12">Distance (km)
+          <div class="row g-0">
+            <div id="slider" class="col-12"></div>
+            <div class="col-6">
+              <input type="text" id="distance-start" class="sliderValue" data-index="0" value="30" />
+            </div>
+            <div class="col-6">
+              <input type="text" id="distance-finish" class="sliderValue" data-index="1" value="70" />
+            </div>
+          </div>
         </label>
 
 
@@ -124,7 +132,14 @@
           </div>
           </div> -->
         <!-- submit button -->
-        <p><button id="filter-submit" type="submit">Find</button></p>
+        <div class="col-7">
+          <button id="clear-all-filters" >Clear all filters</button>
+        </div>
+        <div class="col-5">
+          <p><button id="filter-submit" type="submit">Search</button></p>
+        </div>
+        
+      </div>
       </form>
     </div>
     <!-- workout cards wrapper -->

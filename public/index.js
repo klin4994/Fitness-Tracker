@@ -9,9 +9,9 @@ async function init() {
   // Distance slider
   $("#slider").slider({
     min: 0,
-    max: 500,
+    max: 100,
     step: 1,
-    values: [10, 100],
+    values: [30, 70],
     slide: function(event, ui) {
         for (var i = 0; i < ui.values.length; ++i) {
             $("input.sliderValue[data-index=" + i + "]").val(ui.values[i]);

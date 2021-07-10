@@ -208,7 +208,7 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
 
   // Row inside the workout data
   const workoutDataRow = document.createElement('div');
-  $(workoutDataRow).attr("class", "row g-0")
+  $(workoutDataRow).attr("class", "row g-0 bulk-stat-row")
     .appendTo(workoutData);
   // delete icon for the button
   const deleteIcon = document.createElement("i")
@@ -317,7 +317,6 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
       );
     } else {
       $(workoutSection).appendTo(row)
-      console.log(workoutKeyMap[key], key, summary[key])
       $(workoutDataRow).append(
         `<div class=" col-sm-6 workout-summary-text prev-workout-content ">
           <span>
@@ -332,26 +331,12 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
   
 }
 
-// Render resistance exercises
-// function renderResistance(exercise, resistanceRow) {
-//   const resistanceRow = document.createElement('div')
-//   $(row).attr("class", "row sg-0").text()
-// }
-
- // Render all resistance exercises
- function resistanceExercisesRender(workoutSection, exercise) {
-
-  // new row for resistance exercises
-  const resistanceRow = document.createElement('div')
-  $(resistanceRow).attr("class", "row g-0")
-    .appendTo(workoutSection)
-  }
-
  // Render all cardio exercises
 function cardioExercisesRender(workoutSection, exercise) {
+
   // new row for cardio exercises
   const cardioRow = document.createElement('div')
-  $(cardioRow).attr("class", "row g-0")
+  $(cardioRow).attr("class", "row g-0 bulk-stat-row")
   // new col for cardio exercises
   const cardioCol = document.createElement('div')
   $(cardioCol).attr("class", "col-12")
@@ -361,7 +346,8 @@ function cardioExercisesRender(workoutSection, exercise) {
   const dataRow = document.createElement('div')
   $(dataRow).attr("class", "row g-0")
     .appendTo(cardioCol)
-
+  const hr = document.createElement("hr");
+  $(dataRow).append(hr);
   Object.keys(exercise).forEach((stat, val) => {
     let dataCol = document.createElement('div')
     // the 'name' property takes the whole row width (12 cols), in case there's a lot of characters for 6 col-width
@@ -375,7 +361,8 @@ function cardioExercisesRender(workoutSection, exercise) {
     if (stat !== "type") {
     const p = document.createElement("p");
     const span = document.createElement("span");
-    
+
+
     const capitalized = stat.charAt(0).toUpperCase();
     const rest = stat.slice(1)
 
@@ -408,7 +395,7 @@ function cardioExercisesRender(workoutSection, exercise) {
  function resistanceExercisesRender(workoutSection, exercise) {
   // new row for resistance exercises
   const resistanceRow = document.createElement('div')
-  $(resistanceRow).attr("class", "row g-0")
+  $(resistanceRow).attr("class", "row g-0 bulk-stat-row")
   // new col for resistance exercises
   const resistanceCol = document.createElement('div')
   $(resistanceCol).attr("class", "col-12")
@@ -419,6 +406,8 @@ function cardioExercisesRender(workoutSection, exercise) {
   $(dataRow).attr("class", "row g-0")
     .appendTo(resistanceCol)
 
+  const hr = document.createElement("hr");
+  $(dataRow).append(hr);
   Object.keys(exercise).forEach((stat, val) => {
     let dataCol = document.createElement('div')
     // the 'name' property takes the whole row width (12 cols), in case there's a lot of characters for 6 col-width
@@ -445,7 +434,7 @@ function cardioExercisesRender(workoutSection, exercise) {
         span.textContent = capitalized + rest + " (min):"
         break;
         default:
-        span.textContent = capitalized + rest
+        span.textContent = capitalized + rest + ":"
     }
 
     const textNode = document.createElement('span');
