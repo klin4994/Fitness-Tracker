@@ -19,9 +19,9 @@ html,
 body {
   max-width:90rem;
   margin: 0 auto;
-  background-color: rgba(238,240,248,255);
+  /* background-color: rgba(238,240,248,255); */
+  background-color: #fff;
   font-family: Poppins, Helvetica, "sans-serif";
-  
 }
 
 #logo{
@@ -127,7 +127,7 @@ input {
 }
 
 .wrapper {
-  background-color: rgba(238,240,248,255);
+  /* background-color: rgba(238,240,248,255); */
 }
 
 .card.m-auto,
@@ -477,7 +477,7 @@ ul{
   text-align:right;
 }
 div.wrapper.workout {
-  background-color: rgba(238,240,248,255);
+  /* background-color: rgba(238,240,248,255); */
   height:max-content
 }
 
@@ -487,9 +487,10 @@ div.wrapper.workout {
 
 .prev-workout-content{
   display: block;
-  padding: 5px;
-  
+  padding-left: 0.6rem;
+  margin:0;
 }
+
 
 .prev-workout-content span strong{
   position: relative;
@@ -508,7 +509,7 @@ div.wrapper.workout {
 
 .card-header{
   font-size:1.3rem;
-  padding-top: 0;
+  padding: 1px 10px;
   color:rgb(255, 255, 255);
   background-color:rgba(255, 94, 0, 0.795);
   /* background-color: rgba(226, 12, 12, 0.658) */
@@ -553,20 +554,22 @@ div.wrapper.workout {
 }
 
 .delete-btn {
-  float: right;
-  padding:3px 0 3px 3px;
-  margin:5px 5px 0 0;
-  font-size: 0.8rem;
-  color:rgb(223, 0, 0);
-  border:rgb(223, 0, 0) 1px solid;
+  
+  z-index:1;
+  position:absolute;
+  right:0;
+  width:fit-content;
+  padding:1px 4px 1px 4px;
+  font-size: 2rem;
+  color:rgb(209, 58, 58);
+  border:none;
   border-radius:5px;
-
+  background-color: transparent;
+  font-weight: thin;
 }
 .delete-btn:hover {
   cursor: pointer;
   color:white;
-  background-color:rgb(216, 3, 3);
-  border:rgb(216, 3, 3) 1px solid;
 }
 
 
@@ -587,6 +590,15 @@ ul{
 
 #filter-submit{
   margin: 10px auto 0px;
+}
+
+#resistanceTitleRow .jumbotron {
+  text-align:center;
+  padding:0.2rem
+}
+#cardioTitleRow .jumbotron {
+  text-align:center;
+  padding:0.2rem
 }
 @keyframes toast {
   50% {
@@ -610,11 +622,7 @@ ul{
     text-align: center;
   }
   
-  .delete-btn {
-
-
 }
-
 /* when the menu toggle appears */
 @media only screen and (max-width: 989px) {
     .navbar-nav{
@@ -648,6 +656,7 @@ ul{
       margin: 2rem 10vw;
       width:80vw;
     }
+
 
 }
 

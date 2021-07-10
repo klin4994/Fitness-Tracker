@@ -94,8 +94,8 @@ async function loadWorkouts(workouts) {
     mainContainer.appendChild(newContainer)
     const workoutSummary = {
       date: formatDate(workout.day),
-      totalDuration: workoutTotalDuration,
       numExercises: workout.exercises.length,
+      totalDuration: workoutTotalDuration,
       ...tallyExercises(workout.exercises)
     };
 
@@ -111,8 +111,6 @@ function tallyExercises(exercises) {
   const tallied = exercises.reduce((acc, curr) => {
     if (curr.type === "resistance") {
       acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
-      acc.totalSets = (acc.totalSets || 0) + curr.sets;
-      acc.totalReps = (acc.totalReps || 0) + curr.reps;
     } else if (curr.type === "cardio") {
       acc.totalDistance = (acc.totalDistance || 0) + curr.distance;
     }
@@ -176,11 +174,14 @@ function renderLastWorkout(summary, id, lastWorkout) {
 }
 
 function renderRestWorkouts(summary, id, lastWorkout,exercises) {
-  console.log(exercises)
+  console.log(summary);
   const container = document.getElementById(`${id}`);
 
   // create row for the card for grid arrangement
   const row = document.createElement('div')
+
+  // button
+  const Button = document.createElement('div')
   $(row).attr("class", "row g-0")
   // column (middle) to display workout data except date
   const workoutSection = document.createElement('div')
@@ -191,93 +192,78 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
     .appendTo(workoutSection)
   // Column to display workout data
   const workoutData = document.createElement('div')
-  $(workoutData).attr("class", "col-10")
+  $(workoutData).attr("class", "col-12")
     .appendTo(workoutRow)
-  // Column for actions, e.g delete button
-  const workoutActions = document.createElement('div')
-  $(workoutActions).attr("class", "col-2")
-    .appendTo(workoutRow)
+
+  // Row inside the workout data
+  const workoutDataRow = document.createElement('div');
+  $(workoutDataRow).attr("class", "row g-0")
+    .appendTo(workoutData);
   // delete icon for the button
   const deleteIcon = document.createElement("i")
   $(deleteIcon).attr("class", "delete icon")
   // delete button
-  const deleteButton = document.createElement('div')
+  const deleteButton = document.createElement('button')
 
   // Titles
   // Resistance Title
   const resistanceTitleRow = document.createElement('div')
   const resistanceTitleCol = document.createElement('div')
-  $(resistanceTitleRow).attr({class:"row g-0", id:"resistanceTitleRow"})
-    .appendTo(workoutSection)
-    .text("resistance Title")
-  $(resistanceTitleCol).attr({class:"col-12", id:"resistanceTitleCol"})
-    .appendTo(resistanceTitleRow)
-  // Count for resistance exercises, if ends up still as zero, remove the title
-  let resistanceCount = 0;
+  const resistanceTitleText = document.createElement('div')
+  // if there at least one resistance exercise, render the title jumbtro
+  exercises.forEach(exercise => {
+    if (exercise.type==="resistance") {
+    
+      $(resistanceTitleRow).attr({class:"row g-0", id:"resistanceTitleRow"})
+        .appendTo(workoutSection)
+      $(resistanceTitleCol).attr({class:"col-12", id:"resistanceTitleCol"})
+        .appendTo(resistanceTitleRow)
+      
+      $(resistanceTitleText).attr({class:"jumbotron shadow-sm", id:"resistanceTitleText"})
+      .appendTo(resistanceTitleCol)
+      .text("Resistance Exercises")
+    }
+  })
 
   // Cardio Title
   const cardioTitleRow = document.createElement('div')
   const cardioTitleCol = document.createElement('div')
-  $(cardioTitleRow).attr({class:"row g-0", id:"cardioTitleRow"})
-    .appendTo(workoutSection)
-    .text("Cardio Title")
-  $(cardioTitleCol).attr({class:"col-12", id:"cardioTitleCol"})
-    .appendTo(cardioTitleRow)
-  // Count for cardio exercises, if ends up still as zero, remove the title
-  let cardioCount = 0;
-
-  // // Title row for resistance
-  // const resistanceTitleRow = document.createElement('div')
-  // $(resistanceTitleRow).attr("class", "row g-0")
-  //   .appendTo(workoutSection)
-  //   .text("Resistance exercises")
-  // // new row for resistance exercises
-  // const resistanceRow = document.createElement('div')
-  // $(resistanceRow).attr("class", "row g-0")
-  //   .appendTo(workoutSection)
-  //   .text("Resistance exercises")
-
-  // Render all resistance exercises if exist
+  const cardioTitleText = document.createElement('div')
+  // if there at least one cardio exercise, render the title jumbtro
   exercises.forEach(exercise => {
-    if (exercise.type === "resistance") {
-      resistanceExercisesRender(workoutSection, exercise)
-    } else if (exercise.type === "resistance") {
-      resistanceExercisesRender(resistanceTitleCol, exercise)
-      resistanceCount ++
-    } 
+    if (exercise.type==="cardio") {
+    
+      $(cardioTitleRow).attr({class:"row g-0", id:"cardioTitleRow"})
+        .appendTo(workoutSection)
+        
+        
+      $(cardioTitleCol).attr({class:"col-12", id:"cardioTitleCol"})
+        .appendTo(cardioTitleRow)
+      
+      $(cardioTitleText).attr({class:"jumbotron shadow-sm", id:"cardioTitleText"})
+      .appendTo(cardioTitleCol)
+      .text("Cardio Exercises")
+    }
   })
 
   // Render all cardio exercises if exist
   exercises.forEach(exercise => {
     if (exercise.type === "resistance") {
-      resistanceExercisesRender(workoutSection, exercise)
+      resistanceExercisesRender(resistanceTitleCol, exercise)
     } else if (exercise.type === "cardio") {
       cardioExercisesRender(cardioTitleCol, exercise)
-      cardioCount ++
     } 
   })
-  if(cardioCount === 0) {
-    $("#cardioTitleRow").remove()
-  }
-  if(resistanceCount === 0) {
-    $("#resistanceTitleRow").remove()
-  }
-  // if(Object.values(exercises[0]).indexOf("cardio")>1) {
-  //   // cardioExercisesRender(workoutSection)
-  //   console.log(exercises)
-  //}
-  
-
   
   // Delete button
   $(deleteButton)
     .attr("id", `del-${id}`)
-    .attr("class", `small negative ui delete-btn`)
+    // .attr("class", `small negative ui delete-btn`)
+    .attr("class","fa fa-trash-o delete-btn")
     .attr("data-bs-toggle", `modal`)
     .attr("data-bs-target", `#deleteModal`)
-    .text("Delete ")
-    .appendTo(workoutActions)
-    .append(deleteIcon)
+    .appendTo(row)
+    // .append(deleteIcon)
     .click(function() {
       // get current id
       var id = $(this).attr("id").slice(4)
@@ -287,14 +273,15 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card ui raised"):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
-    date: "",
-    totalDuration: "Duration (min): ",
+    date: "", 
     numExercises: "Exercises:",
     totalWeight: "Weight (kg):",
     totalSets: "Sets: ",
     totalReps: "Reps: ",
-    totalDistance: "Distance (km):"
+    totalDistance: "Distance (km):",
+    totalDuration: "Duration (min): ",
   };
+  console.log(summary)
   Object.keys(summary).forEach(key => {
     const p = document.createElement("span");
 
@@ -319,9 +306,13 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
       );
     } else {
       $(workoutSection).appendTo(row)
-      $(workoutData).append(
-        `<div class=" prev-workout-content">
-          <span><strong>${workoutKeyMap[key]}</strong><span class="data">${summary[key]}</span></span>
+      console.log(workoutKeyMap[key], key, summary[key])
+      $(workoutDataRow).append(
+        `<div class=" col-sm-6 prev-workout-content">
+          <span>
+            <strong>${workoutKeyMap[key]}</strong>
+            <span class="data">${summary[key]}</span>
+          </span>
         </div>`)
     }
   });
@@ -349,33 +340,117 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
 function cardioExercisesRender(workoutSection, exercise) {
   // new row for cardio exercises
   const cardioRow = document.createElement('div')
+  $(cardioRow).attr("class", "row g-0")
   // new col for cardio exercises
   const cardioCol = document.createElement('div')
   $(cardioCol).attr("class", "col-12")
     .appendTo(cardioRow)
+
+  // Data row
+  const dataRow = document.createElement('div')
+  $(dataRow).attr("class", "row g-0")
+    .appendTo(cardioCol)
+
   Object.keys(exercise).forEach((stat, val) => {
-    console.log(exercise[stat])
+    let dataCol = document.createElement('div')
+    // the 'name' property takes the whole row width (12 cols), in case there's a lot of characters for 6 col-width
+    if (stat==="name") {
+      $(dataCol).attr("class", "col-12 exercise-name-col")
+    } else {
+      // the rest of data will take 6 col width
+      $(dataCol).attr("class", "col-sm-6")
+    }
+    
     if (stat !== "type") {
     const p = document.createElement("p");
     const strong = document.createElement("strong");
     
-    strong.textContent = `${stat}: `;
+    const capitalized = stat.charAt(0).toUpperCase();
+    const rest = stat.slice(1)
+
+    // add units where appropriate
+    switch (stat) {
+      case "distance":
+        strong.textContent = capitalized + rest + " (km):"
+        break;
+      case "duration":
+        strong.textContent = capitalized + rest + " (min):"
+        break;
+        default:
+        strong.textContent = capitalized + rest
+    }
     const textNode = document.createElement('span');
     textNode.textContent = exercise[stat]; 
-
+    $(strong).attr("class", "capitalize")
     $(p).append(strong)
       .attr("class","prev-workout-content")
-    ;
-    $(p).append(textNode);
+      .append(textNode);
     textNode.setAttribute('class', 'data');
-    
-    $(cardioCol).append(p)
+    $(dataCol).append(p).appendTo(dataRow)
     $(cardioRow).append(cardioCol)
       .appendTo(workoutSection)
   }
   });
 }
 
+ // Render all resistance exercises
+ function resistanceExercisesRender(workoutSection, exercise) {
+  // new row for resistance exercises
+  const resistanceRow = document.createElement('div')
+  $(resistanceRow).attr("class", "row g-0")
+  // new col for resistance exercises
+  const resistanceCol = document.createElement('div')
+  $(resistanceCol).attr("class", "col-12")
+    .appendTo(resistanceRow)
+
+  // Data row
+  const dataRow = document.createElement('div')
+  $(dataRow).attr("class", "row g-0")
+    .appendTo(resistanceCol)
+
+  Object.keys(exercise).forEach((stat, val) => {
+    let dataCol = document.createElement('div')
+    // the 'name' property takes the whole row width (12 cols), in case there's a lot of characters for 6 col-width
+    if (stat==="name") {
+      $(dataCol).attr("class", "col-12 exercise-name-col")
+    } else {
+      // the rest of data will take 6 col width
+      $(dataCol).attr("class", "col-sm-6")
+    }
+    
+    if (stat !== "type") {
+    const p = document.createElement("p");
+    const strong = document.createElement("strong");
+    
+    const capitalized = stat.charAt(0).toUpperCase();
+    const rest = stat.slice(1)
+
+    // add units where appropriate
+    switch (stat) {
+      case "weight":
+        strong.textContent = capitalized + rest + " (kg):"
+        break;
+      case "duration":
+        strong.textContent = capitalized + rest + " (min):"
+        break;
+        default:
+        strong.textContent = capitalized + rest
+    }
+
+    const textNode = document.createElement('span');
+    textNode.textContent = exercise[stat]; 
+
+    $(strong).attr("class", "capitalize")
+    $(p).append(strong)
+      .attr("class","prev-workout-content")
+      .append(textNode);
+    textNode.setAttribute('class', 'data');
+    $(dataCol).append(p).appendTo(dataRow)
+    $(resistanceRow).append(resistanceCol)
+      .appendTo(workoutSection)
+  }
+  });
+}
 
 function renderNoWorkoutText() {
   const container = document.querySelector(".workout-stats");
