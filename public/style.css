@@ -29,7 +29,7 @@ body {
   white-space:nowrap
 }
 nav {
-  background-color: white;
+  background-color: #f8f4f4;
   color: #000000;
   line-height: 3;
   font-size: 1.2rem;
@@ -37,7 +37,7 @@ nav {
 }
 
 .nav-background{
-  background-color: white;
+  background-color: #f8f4f4;
   left: 0;
   position:absolute;
   min-width: 100vw;
@@ -607,7 +607,7 @@ ul{
 }
 
 .bulk-stat-row {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 .resistanceTitleText,
 .cardioTitleText,
@@ -617,16 +617,17 @@ ul{
 }
 
 .workoutJumbotron  {
-  margin:0 0 1rem 0;
+  margin:0 0 0.7rem 0;
   text-align:center;
   padding:0.2rem
 }
 
 .resistanceTitleText,
 .cardioTitleText{
-  margin:0 0 0px 0;
+  margin:0;
 }
 hr {
+  margin-bottom: 0.7rem;
   color: rgb(177, 177, 177)
 }
 .summaryTitleText {
@@ -681,10 +682,6 @@ hr {
   margin: 0.3rem auto
 }
 
-#start-date-label,
-#finish-date-label {
-  
-}
 
 @keyframes toast {
   50% {

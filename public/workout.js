@@ -44,7 +44,6 @@ $('#confirm-delete').click(function(e) {
 
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
-  console.log("Last workout:", lastWorkout);
   let durationSum = 0;
   for (i=0; i<lastWorkout.exercises.length; i++) {
         durationSum = durationSum + lastWorkout.exercises[i].duration
@@ -133,19 +132,6 @@ function formatDate(date) {
 // Last workout summary
 function renderLastWorkout(summary, id, lastWorkout) {
   const container = document.getElementById(`${id}`);
-  // delete button
-  const deleteButton = document.createElement('button')
-  $(deleteButton)
-    .attr("id", `del-${id}`)
-    .attr("class", `delete-btn`)
-    .text("Delete")
-    .appendTo(container)
-    .click(function() {
-      API.deleteWorkout(this.id.slice(4)).then(()=>{
-        // reload the cards for the rest of the workouts
-        $( ".rest-workout-container" ).remove()
-        initWorkout()})
-    })
   // if not the last workout, apply class 'rest-workout-container' for styling
   !lastWorkout? container.setAttribute("class","rest-workout-container card raised "):container.setAttribute("class","prev-workout")
   const workoutKeyMap = {
