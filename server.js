@@ -137,7 +137,7 @@ app.get('/api/filter/:type/:searchName/:dateUp/:dateDown/:distanceUp/:distanceDo
   const queryArray =[];
 
   // Push the relevant query to the array if any value has been provided
-  if (params.type !== "null"){
+  if (params.type !== "all"){
     queryArray.push(typeQuery)
   }
   if (params.searchName !== "null"){

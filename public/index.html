@@ -71,43 +71,44 @@
 
   
   <div id="workout-content" class="row">
-    <div class="col-md-12 col-lg-4">
+    <div class="col-lg-4">
       <!-- date picker -->
       <form id="filter" class="shadow-sm p-9 bg-white rounded card">
         <div class="row">
         <h2 class="col-12">Filters - Workouts</h2>
 
-        <label id="exercise-type-label" for="exercise-type" class="col-sm-6 col-lg-12">Workout type:
+        <label id="exercise-type-label" for="exercise-type" class="col-sm-6 col-lg-12"><strong>Workout type:</strong>
           <!-- <input id="exercise-type" name="exercise-type" type="input" placeholder="Exercise name"> -->
           <select name="exercise-type" id="exercise-type">
+            <option value="all">All</option>
             <option value="resistance">Resistance</option>
             <option value="cardio">Cardio</option>
           </select>
         </label> 
-        <label id="exercise-name-label" for="exercise-name" class="col-sm-6 col-lg-12">Exercise Name:
+        <label id="exercise-name-label" for="exercise-name" class="col-sm-6 col-lg-12"><strong>Exercise Name:</strong> 
           <input id="exercise-name" name="exercise-name" type="input" placeholder="Exercise name">
         </label> 
 
         <!-- Date range picker -->
 
         <label id="start-date-label" for="date-start" class="col-sm-6 col-lg-12">
-          Date range:
+          <strong>Date range:</strong>
           <br>
-          Start date
+          Start:
           <input id="date-start" name="date-start" type="date">
         </label>  
-        <label id="finish-date-label" for="date-finish" class="col-sm-6 col-lg-12">End date
+        <label id="finish-date-label" for="date-finish" class="col-sm-6 col-lg-12">End:
           <input id="date-finish" name="date-finish" type="date">
         </label> 
         <!-- Distance slider -->
-        <label id="start-date-label" for="date-start" class="col-md-6 col-lg-12">Distance (km)
+        <label id="start-date-label" for="date-start" class="col-md-6 col-lg-12"><strong>Distance (km): </strong>
           <div class="row ">
             <div id="slider" class="col-12"></div>
             <div class="col-6" >
-              <input type="text"  id="distance-start" class="sliderValue" data-index="0" value="30" />
+             <span style="display:inline-flex">Min:&nbsp;<input type="text"  id="distance-start" class="sliderValue" data-index="0"  /></span>
             </div>
             <div class="col-6" >
-              <input type="text"  id="distance-finish" class="sliderValue" data-index="1" value="70" />
+              <span style="display:inline-flex">Max:&nbsp; <input type="text"  id="distance-finish" class="sliderValue" data-index="1" /></span>
             </div>
           </div>
         </label>
@@ -126,17 +127,25 @@
     </div>
     <!-- workout cards wrapper -->
     <div class="col-lg-7 wrapper workout">
-      <div class="ui container workout workouts-container">
-        <div class="ui raised card m-auto">
+      <div class="jumbotron create-button-jumbotron">
+        <a href="/exercise.html" id="new-workout-btn" class="huge positive ui button ">Create new workout&nbsp;&nbsp;<i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
+      </div>
+      <div class="ui container workout" id="workouts-container">
+        <div id="previous-workout-card" class="ui raised card m-auto">
           <div class="prev-workout">
-            <h3>Last Workout</h3>
+            <div class="row g-0">
+              <div class="col-6">
+                <h3 id="prev-workout-header">Your latest workout</h3>
+              </div>
+              <div class="col-6 buttons">
+                <div id="continue-btn">
+                  <a  href="/exercise?" class="ui orange button">Continue workout&nbsp;&nbsp;<i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i></a>
+                </div>
+              </div>
+          </div>
             <div class="prev-workout-content"></div>
             <div>
               <div class="workout-stats"></div>
-              <div class="buttons">
-                <a id="continue-btn" href="/exercise?" class="huge ui orange button">Continue Workout</a>
-                <a href="/exercise.html" class="huge positive ui button">New Workout</a>
-              </div>
             </div>
           </div>
           <div class="new-workout">

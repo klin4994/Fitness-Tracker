@@ -1,43 +1,68 @@
 $( document ).ready(function() {
-  
-  $("#filter").submit( async function(e) {
-    loadFiltered(e)
-  })
 
+  $("#filter").submit( async function(e) {
+    const typeFilter = $("#exercise-type")[0].value;
+    const nameFilter = $("#exercise-name")[0].value;
+    // const totalDurationHighFilter = $("#total-duration-high")[0].value;
+    // const totalDurationLowFilter = $("#total-duration-low")[0].value
+    const dateHighFilter = $("#date-finish")[0].value;
+    const dateLowFilter = $("#date-start")[0].value;
+    const distanceHighFilter = $("#distance-finish")[0].value;
+    const distanceLowFilter = $("#distance-start")[0].value;
+    // if any of the filter value is not empty/other than the default value, make 'filterOn' variable 'true'
+    if (typeFilter == 'all' &&
+      !nameFilter &&
+      !dateHighFilter &&
+      !dateLowFilter &&
+      !distanceHighFilter &&
+      !distanceLowFilter) {
+        API.deleteWorkout(id).then( async function () {
+          const restWorkouts = await API.getAllWorkouts()
+          $( ".rest-workout-container" ).remove()
+          loadWorkouts(restWorkouts)
+        })
+      } else {
+        loadFiltered(e)
+      }
+    
+  })
+  
   // Function to load filtered results
   async  function loadFiltered(e) {
-  e.preventDefault()
-  const typeFilter = $("#exercise-type")[0].value || null;
-  const nameFilter = $("#exercise-name")[0].value || null;
-  // const totalDurationHighFilter = $("#total-duration-high")[0].value;
-  // const totalDurationLowFilter = $("#total-duration-low")[0].value
-  const dateHighFilter = $("#date-finish")[0].value || null;
-  const dateLowFilter = $("#date-start")[0].value || null;
-  const distanceHighFilter = $("#distance-finish")[0].value || null;
-  const distanceLowFilter = $("#distance-start")[0].value || null;
-  $( ".rest-workout-container" ).remove()
-  const filteredWorkouts = await API.getFilteredWorkouts(
-    typeFilter,nameFilter,"", "", dateHighFilter, dateLowFilter,distanceHighFilter,distanceLowFilter
-    )
-  loadWorkouts(filteredWorkouts)
-  // hide the modal after confirming
-  $('#deleteModal').modal('hide')
-}
+    e.preventDefault()
+    const typeFilter = $("#exercise-type")[0].value || null;
+    const nameFilter = $("#exercise-name")[0].value || null;
+    // const totalDurationHighFilter = $("#total-duration-high")[0].value;
+    // const totalDurationLowFilter = $("#total-duration-low")[0].value
+    const dateHighFilter = $("#date-finish")[0].value || null;
+    const dateLowFilter = $("#date-start")[0].value || null;
+    const distanceHighFilter = $("#distance-finish")[0].value || null;
+    const distanceLowFilter = $("#distance-start")[0].value || null;
+    $( ".rest-workout-container" ).remove()
+    const filteredWorkouts = await API.getFilteredWorkouts(
+      typeFilter,nameFilter,"", "", dateHighFilter, dateLowFilter,distanceHighFilter,distanceLowFilter
+      )
+    loadWorkouts(filteredWorkouts)
+    // hide the modal after confirming
+    $('#deleteModal').modal('hide')
+  }
+
 
 // Modal for confirming of deletion of workouts
-$('#confirm-delete').click(function(e) {
+$('#confirm-delete').click( e => {
+  
   var id = $(`#deleteModal`).attr('data-id');
   // if deleting from the filtered list (condition = input field not clear),
   // to be changed to filter toggle.
   if ($("#exercise-name")[0].value.length !==0) {
     API.deleteWorkout(id).then(loadFiltered(e))
-
   } else {
   // if from unfiltered list
   API.deleteWorkout(id).then( async function () {
-  const restWorkouts = await API.getAllWorkouts()
-  $( ".rest-workout-container" ).remove()
-  loadWorkouts(restWorkouts)})
+    const restWorkouts = await API.getAllWorkouts()
+    $( ".rest-workout-container" ).remove()
+    loadWorkouts(restWorkouts)
+  })
   $('#deleteModal').modal('hide');
   }
 })
@@ -64,7 +89,8 @@ async function initWorkout() {
       ...tallyExercises(lastWorkout.exercises)
     };
 
-    renderLastWorkout(workoutSummary, "last"+lastWorkout._id, true);
+  
+    renderWorkouts(workoutSummary, "last"+lastWorkout._id, true, lastWorkout.exercises);
   } else {
     renderNoWorkoutText()
   }
@@ -88,7 +114,7 @@ async function loadWorkouts(workouts) {
     const newContainer = document.createElement("div")
     // add id to each smaller containers
     newContainer.setAttribute("id", workout._id)
-    const mainContainer = document.querySelector(".workouts-container")
+    const mainContainer = document.querySelector("#workouts-container")
     // append smaller containers to the main larger container
     mainContainer.appendChild(newContainer)
     const workoutSummary = {
@@ -98,7 +124,7 @@ async function loadWorkouts(workouts) {
       ...tallyExercises(workout.exercises)
     };
 
-    renderRestWorkouts(workoutSummary, workout._id, false, workout.exercises);
+    renderWorkouts(workoutSummary, workout._id, false, workout.exercises);
   })
   } else {
     renderNoWorkoutText()
@@ -130,45 +156,42 @@ function formatDate(date) {
 }
 
 // Last workout summary
-function renderLastWorkout(summary, id, lastWorkout) {
-  const container = document.getElementById(`${id}`);
-  // if not the last workout, apply class 'rest-workout-container' for styling
-  !lastWorkout? container.setAttribute("class","rest-workout-container card raised "):container.setAttribute("class","prev-workout")
-  const workoutKeyMap = {
-    date: "",
-    totalDuration: "Duration (min): ",
-    numExercises: "Exercises:",
-    totalWeight: "Weight (kg):",
-    totalSets: "Sets: ",
-    totalReps: "Reps: ",
-    totalDistance: "Distance (km):"
-  };
-  Object.keys(summary).forEach(key => {
-    const p = document.createElement("p");
-    const span = document.createElement("span");
+// function renderLastWorkout(summary, id, lastWorkout) {
+//   const container = document.getElementById(`${id}`);
+//   // if not the last workout, apply class 'rest-workout-container' for styling
+//   !lastWorkout? container.setAttribute("class","rest-workout-container card raised "):container.setAttribute("class","prev-workout")
+//   const workoutKeyMap = {
+//     date: "",
+//     totalDuration: "Duration (min): ",
+//     numExercises: "Exercises:",
+//     totalWeight: "Weight (kg):",
+//     totalSets: "Sets: ",
+//     totalReps: "Reps: ",
+//     totalDistance: "Distance (km):"
+//   };
+//   Object.keys(summary).forEach(key => {
+//     const p = document.createElement("p");
+//     const span = document.createElement("span");
     
-    span.textContent = workoutKeyMap[key];
-    // workout data (e.g 50 mins, 12 reps...)
-    const textNode = document.createElement('span');
-    textNode.textContent = `${summary[key]}`; 
+//     span.textContent = workoutKeyMap[key];
+//     // workout data (e.g 50 mins, 12 reps...)
+//     const textNode = document.createElement('span');
+//     textNode.textContent = `${summary[key]}`; 
 
-    p.appendChild(span);
-    p.appendChild(textNode);
-    span.setAttribute('class','card-header-last');
-    container.appendChild(p);
-  });
-}
+//     p.appendChild(span);
+//     p.appendChild(textNode);
+//     span.setAttribute('class','card-header-last');
+//     container.appendChild(p);
+//   });
+// }
 
-function renderRestWorkouts(summary, id, lastWorkout,exercises) {
+function renderWorkouts(summary, id, lastWorkout,exercises) {
 
   const container = document.getElementById(`${id}`);
 
   // create row for the card for grid arrangement
   const row = document.createElement('div')
 
-  // button
-  const Button = document.createElement('div')
-  $(row).attr("class", "row g-0")
   // column to display workout data except date
   const workoutSection = document.createElement('div')
   $(workoutSection).attr("class", "col-md-12")
@@ -256,19 +279,31 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
   $(deleteButton)
     .attr("id", `del-${id}`)
     // .attr("class", `small negative ui delete-btn`)
-    .attr("class","fa fa-trash-o delete-btn")
     .attr("data-bs-toggle", `modal`)
     .attr("data-bs-target", `#deleteModal`)
-    .appendTo(row)
-    // .append(deleteIcon)
+    .attr("class","fa fa-trash-o delete-btn")
     .click(function() {
       // get current id
       var id = $(this).attr("id").slice(4)
       // assign the data to the modal under 'data-id' attribute
       $('#deleteModal').attr('data-id', id).modal('show');
     })
-  // if not the last workout, apply class 'rest-workout-container' for styling
-  !lastWorkout? container.setAttribute("class","rest-workout-container card ui raised"):container.setAttribute("class","prev-workout")
+  
+  // Formatting workout cards based on whether it's the latest workout or not (remainder)
+  if (lastWorkout) {
+    // Remove shadows for the internal card
+    $(container).attr("class","last-workout-container card ui shadow-none raised ")
+  } else {
+    $(deleteButton).appendTo(row)
+      .attr("class","fa fa-trash-o delete-btn")
+      .click(function() {
+        // get current id
+        var id = $(this).attr("id").slice(4)
+        // assign the data to the modal under 'data-id' attribute
+        $('#deleteModal').attr('data-id', id).modal('show');
+      })
+      $(container).attr("class","rest-workout-container card ui raised ")
+  }
   const workoutKeyMap = {
     date: "", 
     numExercises: "Exercises:",
@@ -293,7 +328,7 @@ function renderRestWorkouts(summary, id, lastWorkout,exercises) {
     }
 
     p.appendChild(textNode);
-    if(key === 'date' && !lastWorkout){
+    if(key === 'date'){
       p.setAttribute('class','card-header text-center');
       span.setAttribute('class','card-header1')
       $(row).append(
