@@ -176,37 +176,9 @@ app.get('/api/filter/:type/:searchName/:dateUp/:dateDown/:distanceUp/:distanceDo
   console.log("yo",queryArray)
 
 
-  dbs.find({$and:queryArray
-  //   [ 
-  //   { 'exercises.type': { $regex : params.type, '$options' : 'i' } },
-  //   { 'exercises.name': { $regex : params.searchName, '$options' : 'i' } },
-  //   { 'day': {
-  //     $gte: params.dateDown, 
-  //     $lte: params.dateUp
-  //   } },
-  //   { 'exercises.distance': {
-  //     $gte: params.distanceDown, 
-  //     $lte: params.distanceUp
-  //   } }
-  // ]
-
-  //   [
-  //   { 'exercises.type': { $regex : params.type } },
-  //   what,
-  //   { 'exercises.distance': {
-  //     $gte: params.distanceDown, 
-  //     $lt: params.distanceUp
-  //   } },
-  //   { 'exercises.duration': {
-  //     $gte: params.totalDurationDown, 
-  //     $lte: params.totalDurationUp
-  //   } },
-  //   { 'day': {
-  //     $gte: params.dayDown, 
-  //     $lt: params.dayUp
-  //   } },
-  // ]
-}).sort({ _id: -1  })
+  dbs.find({
+    $and:queryArray
+  }).sort({ _id: -1  })
   .then(dbWorkout => {
     console.log("aaa", dbWorkout)
     res.json(dbWorkout)

@@ -197,6 +197,7 @@ function populateChart(data) {
 }
 
 function calculateTotalWeight(data) {
+  console.log(data);
   let totals = [];
 
   data.forEach((workout) => {
