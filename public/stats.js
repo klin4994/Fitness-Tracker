@@ -41,9 +41,9 @@ function populateChart(data) {
   console.log(lastSevenDurationSum)
   document.querySelector('#lastSevenDSum').innerHTML=lastSevenDurationSum;
   let durations = durationSumArray;
-  let pounds = calculateTotalWeight(data);
-  console.log(pounds)
-  const lastSevenWeightsSum = pounds.slice(pounds.length-7).reduce((a,b) => a + b, 0)
+  let kg = calculateTotalWeight(data);
+  console.log(kg)
+  const lastSevenWeightsSum = kg.slice(kg.length-7).reduce((a,b) => a + b, 0)
   console.log(lastSevenWeightsSum)
   document.querySelector('#lastSevenSSum').innerHTML=lastSevenWeightsSum;
   let workouts = workoutNames(data);
@@ -75,9 +75,9 @@ function populateChart(data) {
       labels,
       datasets: [
         {
-          label: 'Workout Duration In Minutes',
-          backgroundColor: 'red',
-          borderColor: 'red',
+          label: 'Duration (min)',
+          backgroundColor: '#f2711c',
+          borderColor: '#f2711c',
           data: durations,
           fill: false,
         },
@@ -87,6 +87,7 @@ function populateChart(data) {
       responsive: true,
       title: {
         display: true,
+        text: 'Workout Duration (min)',
       },
       scales: {
         xAxes: [
@@ -115,8 +116,8 @@ function populateChart(data) {
       labels,
       datasets: [
         {
-          label: 'Pounds',
-          data: pounds,
+          label: 'Weight (kg)',
+          data: kg,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -140,7 +141,7 @@ function populateChart(data) {
     options: {
       title: {
         display: true,
-        text: 'Pounds Lifted',
+        text: 'Weight Lifted (kg)',
       },
       scales: {
         yAxes: [
@@ -182,7 +183,7 @@ function populateChart(data) {
         {
           label: 'Exercises Performed',
           backgroundColor: colors,
-          data: pounds,
+          data: kg,
         },
       ],
     },
