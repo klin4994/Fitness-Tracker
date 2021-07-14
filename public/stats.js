@@ -119,7 +119,7 @@ function populateChart(data) {
       labels,
       datasets: [
         {
-          label: 'Weight (kg)',
+          label: 'Distance (km)',
           data: kg,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -144,7 +144,7 @@ function populateChart(data) {
     options: {
       title: {
         display: true,
-        text: 'Weight Lifted (kg)',
+        text: 'Daily Distance Ran',
       },
       scales: {
         yAxes: [
@@ -203,12 +203,24 @@ function calculateTotalWeight(data) {
   console.log(data);
   let totals = [];
 
+  // Remove resistance Exercises
+  data.forEach( ({exercises}) => {
+    console.log(exercises)
+    // if (exercises.type === 'resistance') {
+    //   exercises.distance = 0;
+    // }
+  })
+  
+  // If cardio exercise, get running distance
   data.forEach((workout) => {
-    const workoutTotal = workout.exercises.reduce((total, { duration }) => {
-        return total + duration;
-    }, 0);
-
-    totals.push(workoutTotal);
+      const workoutTotal = workout.exercises.reduce((total, {type, distance} ) => {
+        console.log(type)
+        if (type  === "cardio") {
+          console.log(distance)
+          return total + distance;
+        }          
+      }, 0);
+      totals.push(workoutTotal);
   });
   
   return totals;
