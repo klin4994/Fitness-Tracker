@@ -31,6 +31,17 @@ app.get("/api/workouts/range", (req, res) => {
     });
 });
 
+// Get last 20 workouts
+  app.get("/api/last-20-workouts", (req, res) => {
+    dbs.find().sort({ _id: -1 }).limit(10)
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+  });
+
 // get last workout
 app.get("/api/workouts", (req, res) => {
   dbs.find({})

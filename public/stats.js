@@ -22,8 +22,6 @@ function generatePalette() {
 }
 
 function populateChart(data) {
-  
-  console.log(data);
   let durationSumArray = [];
   data.forEach(workout => {
     // for (i=0; i<workout.exercises.length; i++) {
@@ -36,7 +34,6 @@ function populateChart(data) {
         return durationSum + duration
       }, 0);
       durationSumArray.push(workoutTotal)
-      console.log(workoutTotal)
   },
   
   )
@@ -44,10 +41,10 @@ function populateChart(data) {
   console.log(lastSevenDurationSum)
   document.querySelector('#lastSevenDSum').innerHTML=lastSevenDurationSum;
   let durations = durationSumArray;
+  console.log(durationSumArray)
   let kg = calculateTotalWeight(data);
-  console.log(kg)
+  let km = calculateTotalDistance(data);
   const lastSevenWeightsSum = kg.slice(kg.length-7).reduce((a,b) => a + b, 0)
-  console.log(lastSevenWeightsSum)
   document.querySelector('#lastSevenSSum').innerHTML=lastSevenWeightsSum;
   let workouts = workoutNames(data);
   const colors = generatePalette();
@@ -57,21 +54,29 @@ function populateChart(data) {
   let pie = document.querySelector('#canvas3').getContext('2d');
   let pie2 = document.querySelector('#canvas4').getContext('2d');
 
-  const daysOfWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
-
+  console.log(data)
   const labels = data.map(({ day }) => {
     const date = new Date(day);
-    return daysOfWeek[date.getDay()];
+    return date.toLocaleDateString();
   });
 
+  // Get 10 most recent workout from the 'data' retrieved
+  let resistanceCount = 0, cardioCount = 0, recentWorkoutCount = 10;
+  data.length < 10 ? recentWorkoutCount = data.length : null;
+
+  // 
+  for(i=0; i<recentWorkoutCount ; i++) {
+    if (data[i].exercises.length > 0) {
+      console.log(data[i].exercises.length)
+    $(data[i].exercises).each( (_,{type}) => {  
+      if (type == "resistance") {
+        console.log(resistanceCount)
+      } else if (type == "cardio" ) {
+        cardioCount++
+      }
+     })
+    }
+  }
   let lineChart = new Chart(line, {
     type: 'line',
     data: {
@@ -90,7 +95,7 @@ function populateChart(data) {
       responsive: true,
       title: {
         display: true,
-        text: 'Daily Workout Duration',
+        text: 'Duration Per Workout',
       },
       scales: {
         xAxes: [
@@ -120,7 +125,7 @@ function populateChart(data) {
       datasets: [
         {
           label: 'Distance (km)',
-          data: kg,
+          data: km,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -158,6 +163,7 @@ function populateChart(data) {
     },
   });
 
+  console.log(workouts)
   let pieChart = new Chart(pie, {
     type: 'pie',
     data: {
@@ -199,28 +205,35 @@ function populateChart(data) {
   });
 }
 
-function calculateTotalWeight(data) {
-  console.log(data);
+function calculateTotalDistance(data) {
   let totals = [];
-
-  // Remove resistance Exercises
-  data.forEach( ({exercises}) => {
-    console.log(exercises)
-    // if (exercises.type === 'resistance') {
-    //   exercises.distance = 0;
-    // }
-  })
   
   // If cardio exercise, get running distance
   data.forEach((workout) => {
       const workoutTotal = workout.exercises.reduce((total, {type, distance} ) => {
-        console.log(type)
         if (type  === "cardio") {
-          console.log(distance)
           return total + distance;
         }          
       }, 0);
       totals.push(workoutTotal);
+  });
+  
+  return totals;
+}
+
+function calculateTotalWeight(data) {
+  let totals = [];
+
+  data.forEach((workout) => {
+    const workoutTotal = workout.exercises.reduce((total, { type, weight }) => {
+      if (type === 'resistance') {
+        return total + weight;
+      } else {
+        return total;
+      }
+    }, 0);
+
+    totals.push(workoutTotal);
   });
   
   return totals;
