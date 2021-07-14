@@ -26,14 +26,17 @@ function populateChart(data) {
   console.log(data);
   let durationSumArray = [];
   data.forEach(workout => {
-    let durationSum = 0;
-    let thisId;
-    for (i=0; i<workout.exercises.length; i++) {
-      durationSum = durationSum + workout.exercises[i].duration
-      thisId = workout._id;
-      console.log(thisId, durationSum)
-      durationSumArray.push(durationSum)
-    }
+    // for (i=0; i<workout.exercises.length; i++) {
+    //   durationSum = durationSum + workout.exercises[i].duration
+    //   thisId = workout._id;
+    //   console.log(thisId, durationSum)
+    //   durationSumArray.push(durationSum)
+    // }
+      const workoutTotal = workout.exercises.reduce((durationSum, { duration }) => {
+        return durationSum + duration
+      }, 0);
+      durationSumArray.push(workoutTotal)
+      console.log(workoutTotal)
   },
   
   )
@@ -87,7 +90,7 @@ function populateChart(data) {
       responsive: true,
       title: {
         display: true,
-        text: 'Workout Duration (min)',
+        text: 'Daily Workout Duration',
       },
       scales: {
         xAxes: [
@@ -201,12 +204,8 @@ function calculateTotalWeight(data) {
   let totals = [];
 
   data.forEach((workout) => {
-    const workoutTotal = workout.exercises.reduce((total, { type, weight }) => {
-      if (type === 'resistance') {
-        return total + weight;
-      } else {
-        return total;
-      }
+    const workoutTotal = workout.exercises.reduce((total, { duration }) => {
+        return total + duration;
     }, 0);
 
     totals.push(workoutTotal);
