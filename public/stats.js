@@ -24,12 +24,6 @@ function generatePalette() {
 function populateChart(data) {
   let durationSumArray = [];
   data.forEach(workout => {
-    // for (i=0; i<workout.exercises.length; i++) {
-    //   durationSum = durationSum + workout.exercises[i].duration
-    //   thisId = workout._id;
-    //   console.log(thisId, durationSum)
-    //   durationSumArray.push(durationSum)
-    // }
       const workoutTotal = workout.exercises.reduce((durationSum, { duration }) => {
         return durationSum + duration
       }, 0);
@@ -50,9 +44,7 @@ function populateChart(data) {
   let line = document.querySelector('#canvas').getContext('2d');
   let bar = document.querySelector('#canvas2').getContext('2d');
   let pie = document.querySelector('#canvas3').getContext('2d');
-  let pie2 = document.querySelector('#canvas4').getContext('2d');
 
-  console.log(data)
   const labels = data.map(({ day }) => {
     const date = new Date(day);
     return date.toLocaleDateString();
@@ -81,7 +73,7 @@ function populateChart(data) {
       labels,
       datasets: [
         {
-          label: 'Duration (min)',
+          label: 'Duration',
           backgroundColor: '#f2711c',
           borderColor: '#f2711c',
           data: durations,
@@ -101,6 +93,7 @@ function populateChart(data) {
             display: true,
             scaleLabel: {
               display: true,
+              labelString: 'Dates'
             },
           },
         ],
@@ -109,6 +102,7 @@ function populateChart(data) {
             display: true,
             scaleLabel: {
               display: true,
+              labelString: 'Duration (minutes)'
             },
           },
         ],
@@ -154,14 +148,30 @@ function populateChart(data) {
           {
             ticks: {
               beginAtZero: true,
+              autoSkip: false,
+              minRotation: 30,
+              maxRotation: 30,
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Distance (km)'
             },
           },
         ],
+        xAxes: [
+          {
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Dates'
+            },
+          },
+          
+        ]
       },
     },
   });
 
-  console.log(workouts)
   let pieChart = new Chart(pie, {
     type: 'pie',
     data: {
@@ -169,7 +179,7 @@ function populateChart(data) {
       datasets: [
         {
           label: 'Exercises Performed',
-          backgroundColor: ["red","pink"],
+          backgroundColor: ["#00af3abd","#f2721cb2"],
           data: [resistanceCount, cardioCount],
         },
       ],
@@ -177,7 +187,7 @@ function populateChart(data) {
     options: {
       title: {
         display: true,
-        text: 'Exercises Performed',
+        text: 'Exercises as types from last 10 workouts:',
       },
     },
   });
