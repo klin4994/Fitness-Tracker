@@ -716,15 +716,34 @@ hr {
   width:62%;
 }
 
+#canvas {
+  padding-right: 2rem;
+  border-right: 1.5px solid rgba(0,0,0,.1); 
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+#canvas2 {
+  padding-left: 0;
+  padding-right: 2.3rem;
+  margin-left: 0.5rem;
+  margin-bottom: 2rem;
+}
+
 #canvas3 {
+
+  bottom: 10px;
   max-width: 70%;
-  margin:auto
+  margin: 0 auto
 }
 
-options.scales[canvas2].title {
-  color: red;
+#hr1 {
+  display: none
 }
 
+hr {
+  margin-bottom:2rem;
+}
 @keyframes toast {
   50% {
     opacity: 1;
@@ -781,7 +800,7 @@ options.scales[canvas2].title {
     }
     li a{
       text-align:center;
-          position: relative;
+      position: relative;
       width: 100%;
       margin-right:auto;
     }
@@ -804,9 +823,22 @@ options.scales[canvas2].title {
       margin: 0;
       padding:0
     }
+    #canvas {
+      padding-right: 2rem;
+      border-right: none;
+      margin-left: 1rem;
+    }
+    #canvas2 {
+      padding-left: 0;
+      padding-right: 2.3rem;
+      margin-left: 0.5rem;
+    }
     #canvas3 {
       max-width: 90%;
       margin:auto
+    }
+    #hr1 {
+      display: block
     }
 
 }
