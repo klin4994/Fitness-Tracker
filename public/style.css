@@ -801,6 +801,10 @@ body.modal-open {
 }
 /* when the menu toggle appears */
 @media only screen and (max-width: 989px) {
+    .navbar-toggler {
+      display: inline;
+      margin-right: 17px;
+      }
     .navbar-nav{
         margin: 0 auto;
         width:100%
