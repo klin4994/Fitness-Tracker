@@ -39,13 +39,11 @@ function populateChart(data) {
   )
   const lastSevenDurationSum = durationSumArray.slice(durationSumArray.length-7).reduce((a,b) => a + b, 0)
   console.log(lastSevenDurationSum)
-  document.querySelector('#lastSevenDSum').innerHTML=lastSevenDurationSum;
   let durations = durationSumArray;
   console.log(durationSumArray)
   let kg = calculateTotalWeight(data);
   let km = calculateTotalDistance(data);
-  const lastSevenWeightsSum = kg.slice(kg.length-7).reduce((a,b) => a + b, 0)
-  document.querySelector('#lastSevenSSum').innerHTML=lastSevenWeightsSum;
+  
   let workouts = workoutNames(data);
   const colors = generatePalette();
 
@@ -70,7 +68,7 @@ function populateChart(data) {
       console.log(data[i].exercises.length)
     $(data[i].exercises).each( (_,{type}) => {  
       if (type == "resistance") {
-        console.log(resistanceCount)
+        resistanceCount++
       } else if (type == "cardio" ) {
         cardioCount++
       }
@@ -167,12 +165,12 @@ function populateChart(data) {
   let pieChart = new Chart(pie, {
     type: 'pie',
     data: {
-      labels: workouts,
+      labels: ["Resistance", "Cardio"],
       datasets: [
         {
           label: 'Exercises Performed',
-          backgroundColor: colors,
-          data: durations,
+          backgroundColor: ["red","pink"],
+          data: [resistanceCount, cardioCount],
         },
       ],
     },
@@ -184,25 +182,25 @@ function populateChart(data) {
     },
   });
 
-  let donutChart = new Chart(pie2, {
-    type: 'doughnut',
-    data: {
-      labels: workouts,
-      datasets: [
-        {
-          label: 'Exercises Performed',
-          backgroundColor: colors,
-          data: kg,
-        },
-      ],
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Exercises Performed',
-      },
-    },
-  });
+  // let donutChart = new Chart(pie2, {
+  //   type: 'doughnut',
+  //   data: {
+  //     labels: workouts,
+  //     datasets: [
+  //       {
+  //         label: 'Exercises Performed',
+  //         backgroundColor: colors,
+  //         data: kg,
+  //       },
+  //     ],
+  //   },
+  //   options: {
+  //     title: {
+  //       display: true,
+  //       text: 'Exercises Performed',
+  //     },
+  //   },
+  // });
 }
 
 function calculateTotalDistance(data) {
