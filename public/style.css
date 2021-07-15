@@ -22,6 +22,7 @@ body {
   /* background-color: rgba(238,240,248,255); */
   background-color: #fefffb;
   font-family: Poppins, Helvetica, "sans-serif";
+  padding-right: 0 !important;
 }
 
 #logo{
@@ -753,9 +754,11 @@ hr {
   background-color: rgb(236, 236, 236);
 }
 
-.modal-open {
-  padding-right: 0 !important;
-}
+
+
+body.modal-open {
+  overflow: auto !important;
+} 
 
 @keyframes toast {
   50% {

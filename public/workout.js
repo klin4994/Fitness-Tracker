@@ -287,6 +287,8 @@ function renderWorkouts(summary, id, lastWorkout,exercises) {
       var id = $(this).attr("id").slice(4)
       // assign the data to the modal under 'data-id' attribute
       $('#deleteModal').attr('data-id', id).modal('show');
+      const body = document.getElementsByTagName('body')
+      // $(body).attr('style', 'overflow:hidden ; padding-right:0')
     })
   
   // Formatting workout cards based on whether it's the latest workout or not (remainder)
