@@ -19,10 +19,9 @@ html,
 body {
   max-width:90rem;
   margin: 0 auto;
-  /* background-color: rgba(238,240,248,255); */
   background-color: #fefffb;
   font-family: Poppins, Helvetica, "sans-serif";
-  padding-right: 0 !important;
+  overflow: overlay !important;
 }
 
 #logo{
@@ -754,11 +753,10 @@ hr {
   background-color: rgb(236, 236, 236);
 }
 
-
-
 body.modal-open {
-  overflow: auto !important;
+  overflow: overlay !important;
 } 
+
 
 @keyframes toast {
   50% {
