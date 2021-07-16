@@ -191,26 +191,6 @@ function populateChart(data) {
       },
     },
   });
-
-  // let donutChart = new Chart(pie2, {
-  //   type: 'doughnut',
-  //   data: {
-  //     labels: workouts,
-  //     datasets: [
-  //       {
-  //         label: 'Exercises Performed',
-  //         backgroundColor: colors,
-  //         data: kg,
-  //       },
-  //     ],
-  //   },
-  //   options: {
-  //     title: {
-  //       display: true,
-  //       text: 'Exercises Performed',
-  //     },
-  //   },
-  // });
 }
 
 function calculateTotalDistance(data) {
