@@ -86,6 +86,7 @@ function populateChart(data) {
       title: {
         display: true,
         text: 'Duration Per Workout',
+        fontSize: 20
       },
       scales: {
         xAxes: [
@@ -142,6 +143,7 @@ function populateChart(data) {
       title: {
         display: true,
         text: 'Daily Distance Ran',
+        fontSize: 20
       },
       scales: {
         yAxes: [
@@ -179,7 +181,7 @@ function populateChart(data) {
       datasets: [
         {
           label: 'Exercises Performed',
-          backgroundColor: ["#00af3abd","#f2721cb2"],
+          backgroundColor: ["#87CEFA","#DDA0DD"],
           data: [resistanceCount, cardioCount],
         },
       ],
@@ -188,6 +190,7 @@ function populateChart(data) {
       title: {
         display: true,
         text: 'Exercises as types from last 10 workouts:',
+        fontSize: 20
       },
     },
   });

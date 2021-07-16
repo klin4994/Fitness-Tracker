@@ -163,6 +163,7 @@ form::after {
 }
 
 .exercise .ui.card {
+  padding: 0 1rem;
   width: 400px;
   max-width: 600px;
 }
@@ -170,7 +171,7 @@ form::after {
 .exercise .buttons {
   margin-top: 20px;
   display: flex;
-  justify-content: space-around ;
+  justify-content: space-between ;
 }
 
 .exercise .buttons  button{
@@ -179,6 +180,9 @@ form::after {
   margin-bottom: 0.5rem;
 }
 
+.exercise {
+  margin-top: 2rem;
+}
 
 button {
   display: block;
@@ -537,16 +541,16 @@ div.wrapper.workout {
 
 .jumbotron-workouts {
   /* background:linear-gradient(to left bottom, #fc1010a6, #ffffff) */
-  background:linear-gradient(to bottom, #cefddfd2, #8ee9ac8e)
+  background:linear-gradient(to top, #cefddfbe, #00f85360)
   /* background:linear-gradient(to left bottom, rgba(255, 90, 90, 0.582), rgba(236, 64, 64, 0.075) 70.71%) */
 }
 
 .jumbotron-dashboard {
-  background:linear-gradient(to bottom, #cefdfdd2, #8ee6e98e)
+  background:linear-gradient(to top, rgba(182, 228, 255, 0.349), rgba(1, 182, 253, 0.384))
 }
 
 .jumbotron-add {
-  background:linear-gradient(217deg, rgba(255, 230, 0, 0.705), rgba(255, 230, 0, 0.171) 70.71%)
+  background:linear-gradient(to top, rgba(255, 230, 0, 0.171) , rgba(255, 230, 0, 0.705))
 }
 
 .delete-btn {
