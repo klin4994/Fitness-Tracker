@@ -129,11 +129,6 @@ input :focus {
   margin: 0px auto;
 }
 
-
-.wrapper {
-  /* background-color: rgba(238,240,248,255); */
-}
-
 .card.m-auto,
 .m-auto {
   margin: 0 auto;
@@ -175,11 +170,15 @@ form::after {
 .exercise .buttons {
   margin-top: 20px;
   display: flex;
+  justify-content: space-around ;
 }
 
-.exercise .buttons button {
-  width: 90%;
+.exercise .buttons  button{
+  margin-right: 0px;
+  min-width:13rem;
+  margin-bottom: 0.5rem;
 }
+
 
 button {
   display: block;
@@ -189,6 +188,10 @@ button {
   border-radius: 6px;
   border: 1px solid #aaa;
   background-color: white;
+}
+
+.complete button {
+  margin:10px
 }
 
 #toast {
@@ -428,9 +431,9 @@ form > button {
 }
 
 #navbar-brand{
-    margin-top:2px;
+    margin-top:5px;
     /* color: #f2711c */
-    color: #f2721cb2
+    color: #f2721cd5
 }
 
 #navbar-brand img{
@@ -539,14 +542,11 @@ div.wrapper.workout {
 }
 
 .jumbotron-dashboard {
-  background:linear-gradient(to left bottom, rgba(89, 222, 255, 0.582), rgba(12, 183, 226, 0.096) 70.71%)
+  background:linear-gradient(to bottom, #cefdfdd2, #8ee6e98e)
 }
 
 .jumbotron-add {
   background:linear-gradient(217deg, rgba(255, 230, 0, 0.705), rgba(255, 230, 0, 0.171) 70.71%)
-}
-.jumbotron-new {
-  background:linear-gradient(217deg, rgba(255, 153, 0, 0.582), rgba(255, 153, 0, 0.089) 70.71%)
 }
 
 .delete-btn {
