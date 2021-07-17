@@ -1,5 +1,7 @@
 $( document ).ready(function() {
-
+  API.deleteWorkout()
+  // Delete empty workouts (no exercises)
+  API.deleteWorkout()
   $("#filter").submit( async function(e) {
     const typeFilter = $("#exercise-type")[0].value;
     const nameFilter = $("#exercise-name")[0].value;

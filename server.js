@@ -193,10 +193,23 @@ app.get('/api/filter/:type/:searchName/:dateUp/:dateDown/:distanceUp/:distanceDo
   .then(dbWorkout => {
     console.log("aaa", dbWorkout)
     res.json(dbWorkout)
-  })    .catch(err => {
+  })    
+  .catch(err => {
     res.json(err);
   });
 })
+
+// Delete workouts with no exercises
+app.delete ("/api/delete-empty", (req, res) => {
+    dbs.deleteMany({ exercises: []})
+    .then (dbWorkout => {
+      res.json(dbWorkout)
+    })
+    .catch (err => {
+      res.json(err)
+    })
+})
+
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
