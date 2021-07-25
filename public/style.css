@@ -19,7 +19,6 @@ html,
 body {
   max-width:90rem;
   margin: 0 auto;
-  background-color: #fefffb;
   font-family: Poppins, Helvetica, "sans-serif";
   overflow: overlay !important;
 }
