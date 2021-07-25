@@ -118,14 +118,20 @@ input {
   border: 1px solid #aaa;
   width: 100%;
   padding: 3px;
+  font-size: 1.3rem;
 }
 
 input :focus {
   box-shadow: green;
 }
 
-#filter label * {
-  margin: 0px auto;
+#filter label  {
+  margin: 10px auto;
+  font-size: 1.3rem;
+}
+
+#exercise-type  {
+  font-size: 1.3rem;
 }
 
 .card.m-auto,
@@ -591,7 +597,7 @@ div.wrapper.workout {
 
 #filter {
   margin: 0 auto 0 3rem;
-  padding:1.3rem;
+  padding: 2rem;
   position: sticky;
   top: 0px;
 }
@@ -666,6 +672,7 @@ hr {
 #clear-all-filters button{
   width:9rem;
   margin: auto;
+  font-size: 1rem;
   color: rgb(253, 98, 98);
   border:rgb(253, 98, 98) solid 1px;
 }
@@ -684,7 +691,9 @@ hr {
 }
 
 #slider {
-  margin-bottom: 0.3rem !important
+  margin-bottom: 0.3rem !important;
+  width:93%;
+  margin: 0.5rem auto !important;
 }
 
 
@@ -760,6 +769,14 @@ body.modal-open {
   overflow: overlay !important;
 } 
 
+.filter-item-title {
+  margin: 10px auto -10px;
+  font-size: 1.3rem;
+}
+
+#date-start {
+  margin-bottom: -15px;
+}
 
 @keyframes toast {
   50% {
