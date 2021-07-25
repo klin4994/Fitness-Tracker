@@ -157,7 +157,7 @@ app.get('/api/filter/:type/:searchName/:dateUp/:dateDown/:distanceUp/:distanceDo
   
   // If date range not provided
   if (params.dateUp == "null" && params.dateDown == "null") {
-    console.log("no dates to both")
+    console.log("no dates inputs")
   // if both dates provided
   } else if (params.dateUp !== "null" && params.dateDown !== "null"){
     queryArray.push(dateQuery)
@@ -171,7 +171,7 @@ app.get('/api/filter/:type/:searchName/:dateUp/:dateDown/:distanceUp/:distanceDo
 
   // If both distance values are not provided
   if (params.distanceUp == "null" && params.distanceDown == "null") {
-    return
+    console.log("no distance inputs")
   // if both distances provided
   } else if (params.distanceUp !== "null" && params.distanceDown !== "null"){
     queryArray.push(distanceQuery)
@@ -183,8 +183,8 @@ app.get('/api/filter/:type/:searchName/:dateUp/:dateDown/:distanceUp/:distanceDo
     queryArray.push(distanceQueryDownOnly)
   }
 
-  // Compile all queries prior making request to the db
-  console.log("yo",queryArray)
+  // Compile all queries prior making request to the db, log the query
+  console.log(queryArray)
 
 
   dbs.find({
