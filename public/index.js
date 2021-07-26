@@ -4,7 +4,10 @@ async function init() {
   // Button to clear all filters
   $("#clear-all-filters").click((e) => {
     e.preventDefault();
+    // Clear input fields
     $("input").val('')
+    // Exercise type set to 'All'
+    $('#exercise-type').val('all')
   })
   // Distance slider
   $("#slider").slider({
