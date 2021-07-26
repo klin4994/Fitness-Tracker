@@ -164,7 +164,7 @@ app.get('/api/filter/:type/:searchName/:dateUp/:dateDown/:distanceUp/:distanceDo
     // if only upper date provided
   } else if (params.dateDown == "null") {
     queryArray.push(dateQueryUpOnly)
-    // if only lower date provided
+    // if only lower date provided  
   } else if (!params.dateUp == "null")  {
     queryArray.push(dateQueryDownOnly)
   }

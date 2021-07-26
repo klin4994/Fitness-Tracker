@@ -32,6 +32,8 @@ $( document ).ready(function() {
   // Function to load filtered results
   async  function loadFiltered(e) {
     e.preventDefault()
+    // hide last workout card
+    $('#previous-workout-card').hide()
     const typeFilter = $("#exercise-type")[0].value || null;
     const nameFilter = $("#exercise-name")[0].value || null;
     // const totalDurationHighFilter = $("#total-duration-high")[0].value;
@@ -47,6 +49,7 @@ $( document ).ready(function() {
     loadWorkouts(filteredWorkouts)
     // hide the modal after confirming
     $('#deleteModal').modal('hide')
+
   }
 
 
