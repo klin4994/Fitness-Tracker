@@ -1,7 +1,6 @@
 $( document ).ready(function() {
-  API.deleteWorkout()
-  // Delete empty workouts (no exercises)
-  API.deleteWorkout()
+  // // Delete empty workouts (no exercises)
+  API.deleteEmptyWorkout()
   $("#filter").submit( async function(e) {
     const typeFilter = $("#exercise-type")[0].value;
     const nameFilter = $("#exercise-name")[0].value;
@@ -55,19 +54,22 @@ $( document ).ready(function() {
 
 // Modal for confirming of deletion of workouts
 $('#confirm-delete').click( e => {
-  
   var id = $(`#deleteModal`).attr('data-id');
+  console.log(id)
   // if deleting from the filtered list (condition = input field not clear),
   // to be changed to filter toggle.
   if ($("#exercise-name")[0].value.length !==0) {
+    console.log(id)
     API.deleteWorkout(id).then(loadFiltered(e))
   } else {
   // if from unfiltered list
-  API.deleteWorkout(id).then( async function () {
-    const restWorkouts = await API.getAllWorkouts()
+  API.deleteWorkout(id)
+  .then( 
+    async function () { const restWorkouts = await API.getAllWorkouts()
     $( ".rest-workout-container" ).remove()
     loadWorkouts(restWorkouts)
-  })
+    }
+  )
   $('#deleteModal').modal('hide');
   }
 })
@@ -320,7 +322,6 @@ function renderWorkouts(summary, id, lastWorkout,exercises) {
     totalDistance: "Distance (km):",
     totalDuration: "Duration (min): ",
   };
-  console.log(summary)
   Object.keys(summary).forEach(key => {
     const p = document.createElement("span");
 

@@ -44,6 +44,7 @@ const API = {
   },
 
   async getAllWorkouts() {
+    console.log("loading all")
     const res = await fetch ('/api/allworkouts')
     const json = await res.json();
     return json;
@@ -72,7 +73,7 @@ const API = {
     return json;
   },
 
-  async deleteWorkout () {
+  async deleteEmptyWorkout () {
     const res = await fetch("/api/delete-empty", {
       method: 'delete',
       headers: {
