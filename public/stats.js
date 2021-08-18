@@ -205,7 +205,9 @@ function calculateTotalDistance(data) {
       const workoutTotal = workout.exercises.reduce((total, {type, distance} ) => {
         if (type  === "cardio") {
           return total + distance;
-        }          
+        } else {
+          return total = 0
+        }         
       }, 0);
       totals.push(workoutTotal);
   });
