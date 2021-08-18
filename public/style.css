@@ -546,16 +546,16 @@ div.wrapper.workout {
 
 .jumbotron-workouts {
   /* background:linear-gradient(to left bottom, #fc1010a6, #ffffff) */
-  background:linear-gradient(to top, #cefddfbe, #00f85360)
+  background:linear-gradient(to bottom, #cefddfbe, #00f85354)
   /* background:linear-gradient(to left bottom, rgba(255, 90, 90, 0.582), rgba(236, 64, 64, 0.075) 70.71%) */
 }
 
 .jumbotron-dashboard {
-  background:linear-gradient(to top, rgba(182, 228, 255, 0.349), rgba(1, 182, 253, 0.384))
+  background:linear-gradient(to bottom, rgba(182, 228, 255, 0.349), rgba(1, 182, 253, 0.384))
 }
 
 .jumbotron-add {
-  background:linear-gradient(to top, rgba(255, 230, 0, 0.171) , rgba(255, 230, 0, 0.705))
+  background:linear-gradient(to bottom, rgba(255, 230, 0, 0.171) , rgba(255, 230, 0, 0.705))
 }
 
 .delete-btn {
