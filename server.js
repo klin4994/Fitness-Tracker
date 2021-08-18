@@ -92,7 +92,6 @@ app.get("/api/allworkouts", (req, res) => {
 
 // delete selected workouts
 app.delete("/api/delete/:id", (req, res) => {
-  console.log("delete req", req)
   dbs.findByIdAndDelete(req.params.id, function (err, docs) {
     if (err){
         console.log(err)

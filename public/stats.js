@@ -23,6 +23,8 @@ function generatePalette() {
 
 function populateChart(data) {
   let durationSumArray = [];
+  // Only get last 10 most recent workouts
+  data.splice(10)
   data.forEach(workout => {
       const workoutTotal = workout.exercises.reduce((durationSum, { duration }) => {
         return durationSum + duration
@@ -54,10 +56,9 @@ function populateChart(data) {
   let resistanceCount = 0, cardioCount = 0, recentWorkoutCount = 10;
   data.length < 10 ? recentWorkoutCount = data.length : null;
 
-  // 
+  // Loop for count incrementation for both workout types
   for(i=0; i<recentWorkoutCount ; i++) {
     if (data[i].exercises.length > 0) {
-      console.log(data[i].exercises.length)
     $(data[i].exercises).each( (_,{type}) => {  
       if (type == "resistance") {
         resistanceCount++
