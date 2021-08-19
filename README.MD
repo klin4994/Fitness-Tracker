@@ -18,7 +18,7 @@
 <p>FiTrack is a fitness tracker that helps users to monitor their fitness performances/goals. In this application, the user can create workout plans and add exercises to those plans. Charts are used to display recent fitness data for better visual interpretation of their progresses.</p>
 <br/>
 <h1>Usage</h1>
-<p>Demo: </p><a target="_blank">https://fitness-tracker-kl.herokuapp.com</a>
+<span>Demo: <a target="_blank" href="https://fitness-tracker-kl.herokuapp.com">https://fitness-tracker-kl.herokuapp.com</a></span>
 <br>
 <h1>Technologies</h1>
 <ul>
