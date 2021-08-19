@@ -25,6 +25,11 @@
 <p>Pull request welcomed!</p>
 <br>
 <h1>Screenshots</h1>
+<strong>Home page with all workout records</strong>
+<img src="./public/images/Home-page-scrn.PNG" alt="All workout records with filter">
+<br>
+<strong>Stats for the 10 most recent workouts</strong>
+<img src="./public/images/Stats-page-scrn.PNG" alt="Stats for the 10 most recent workouts">
 <br>
 <h1>Tests</h1>
 <p>N/A</p> 
