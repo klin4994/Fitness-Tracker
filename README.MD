@@ -15,7 +15,7 @@
 
 <h1>Description</h1>
 <p>First project with MongoDB implemented and deployed on Heroku.</p>
-<p>FiTrack is a fitness tracker that helps users to monitor their fitness performances/goals. In this application, the user can create workout plans and add exercises to those plans. Charts are used to display recent fitness data for better visual interpretation of their progresses.</p>
+<p>LookingFit is a fitness tracker that helps users to monitor their fitness performances/goals. In this application, the user can create workout plans and add exercises to those plans. Charts are used to display recent fitness data for better visual interpretation of their progresses.</p>
 <br/>
 <h1>Usage</h1>
 <span>Demo: <a target="_blank" href="https://lookingfit-kl.herokuapp.com">https://lookingfit-kl.herokuapp.com</a></span>
